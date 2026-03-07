@@ -1,6 +1,6 @@
 <p align="center">
   <img src="static/img/logo.png" alt="Blindseeker Logo" width="120">
-  <h1 align="center">◉ BLINDSEEKER</h1>
+  <h1 align="center">BLINDSEEKER</h1>
   <p align="center">
     <strong>Advanced Username Enumeration & Digital Forensics Tool</strong>
   </p>
