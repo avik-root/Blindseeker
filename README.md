@@ -2,7 +2,7 @@
   <img src="static/img/logo.png" alt="Blindseeker Logo" width="120">
   <h1 align="center">BLINDSEEKER</h1>
   <p align="center">
-    <strong>Advanced Username Enumeration & Digital Forensics Tool</strong>
+    <strong>Advanced Username Enumeration & Digital Forensics Tool. [Currently Under Development Beta Mode]</strong>
   </p>
   <p align="center">
     <code>v1.0.0</code> · <code>Shadow Protocol</code> · Developed by <strong>MintFire</strong>
