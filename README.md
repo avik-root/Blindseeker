@@ -1,6 +1,10 @@
 <p align="center">
   <img src="static/img/logo.png" alt="Blindseeker Logo" width="120">
-  <h1 align="center">Blindseeker</h1>
+  <p align="center">
+    <a href="https://github.com/avik-root/Blindseeker">
+  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&weight=800&size=40&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&repeat=true&width=850&height=100&lines=B+l+i+n+d+s+e+e+k+e+r;Under+Development+Beta+Mode" />
+</a>
+  </p>
   <p align="center">
     <strong>Advanced Username Enumeration & Digital Forensics Tool. [Currently Under Development Beta Mode]</strong>
   </p>
