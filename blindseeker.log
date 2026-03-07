@@ -1,0 +1,486 @@
+2026-03-08 03:04:21,067 [werkzeug] INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-08 03:04:21,067 [werkzeug] INFO: [33mPress CTRL+C to quit[0m
+2026-03-08 03:04:21,067 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:04:21,352 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:04:21,419 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:04:54,175 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:54] "GET / HTTP/1.1" 200 -
+2026-03-08 03:04:54,386 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:54] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-03-08 03:04:54,386 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:54] "GET /static/js/main.js HTTP/1.1" 200 -
+2026-03-08 03:04:56,509 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:56] "GET /socket.io/?EIO=4&transport=polling&t=PpAEP7s HTTP/1.1" 200 -
+2026-03-08 03:04:56,537 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:56] "POST /socket.io/?EIO=4&transport=polling&t=PpAEP8E&sid=_6I9rzT6wb0RFRULAAAA HTTP/1.1" 200 -
+2026-03-08 03:04:56,544 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:56] "GET /socket.io/?EIO=4&transport=polling&t=PpAEP8H&sid=_6I9rzT6wb0RFRULAAAA HTTP/1.1" 200 -
+2026-03-08 03:04:56,546 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-08 03:04:56,559 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:04:56] "GET /socket.io/?EIO=4&transport=polling&t=PpAEP8j&sid=_6I9rzT6wb0RFRULAAAA HTTP/1.1" 200 -
+2026-03-08 03:05:20,236 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:05:20,330 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:05:20,335 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "GET /socket.io/?EIO=4&transport=websocket&sid=_6I9rzT6wb0RFRULAAAA HTTP/1.1" 200 -
+2026-03-08 03:05:20,337 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:05:20,513 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "GET /socket.io/?EIO=4&transport=polling&t=PpAEU-- HTTP/1.1" 200 -
+2026-03-08 03:05:20,526 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "POST /socket.io/?EIO=4&transport=polling&t=PpAEU_9&sid=hUfWnncL1AAbEMQnAAAC HTTP/1.1" 200 -
+2026-03-08 03:05:20,533 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "GET /socket.io/?EIO=4&transport=polling&t=PpAEU_B&sid=hUfWnncL1AAbEMQnAAAC HTTP/1.1" 200 -
+2026-03-08 03:05:20,540 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "GET /socket.io/?EIO=4&transport=polling&t=PpAEU_O&sid=hUfWnncL1AAbEMQnAAAC HTTP/1.1" 200 -
+2026-03-08 03:05:20,553 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:20] "GET /socket.io/?EIO=4&transport=polling&t=PpAEU_W&sid=hUfWnncL1AAbEMQnAAAC HTTP/1.1" 200 -
+2026-03-08 03:05:44,080 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "GET /settings HTTP/1.1" 200 -
+2026-03-08 03:05:44,147 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:05:44,151 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "GET /socket.io/?EIO=4&transport=websocket&sid=hUfWnncL1AAbEMQnAAAC HTTP/1.1" 200 -
+2026-03-08 03:05:44,151 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:05:44,605 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "GET /socket.io/?EIO=4&transport=polling&t=PpAEatK HTTP/1.1" 200 -
+2026-03-08 03:05:44,668 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "POST /socket.io/?EIO=4&transport=polling&t=PpAEate&sid=nEOuqFX_XlRFCU26AAAE HTTP/1.1" 200 -
+2026-03-08 03:05:44,670 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "GET /socket.io/?EIO=4&transport=polling&t=PpAEath&sid=nEOuqFX_XlRFCU26AAAE HTTP/1.1" 200 -
+2026-03-08 03:05:44,703 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:05:44] "GET /socket.io/?EIO=4&transport=polling&t=PpAEauf&sid=nEOuqFX_XlRFCU26AAAE HTTP/1.1" 200 -
+2026-03-08 03:11:40,799 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:40] "GET /settings HTTP/1.1" 200 -
+2026-03-08 03:11:40,828 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:40] "GET /socket.io/?EIO=4&transport=websocket&sid=nEOuqFX_XlRFCU26AAAE HTTP/1.1" 200 -
+2026-03-08 03:11:40,910 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:40] "GET /static/img/logo.png HTTP/1.1" 200 -
+2026-03-08 03:11:40,911 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:11:40,911 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:11:41,009 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:41] "GET /socket.io/?EIO=4&transport=polling&t=PpAFxuC HTTP/1.1" 200 -
+2026-03-08 03:11:41,023 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:41] "POST /socket.io/?EIO=4&transport=polling&t=PpAFxuP&sid=ml2A405DBrjtji6IAAAG HTTP/1.1" 200 -
+2026-03-08 03:11:41,029 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:41] "GET /socket.io/?EIO=4&transport=polling&t=PpAFxuR&sid=ml2A405DBrjtji6IAAAG HTTP/1.1" 200 -
+2026-03-08 03:11:41,031 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:41] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2026-03-08 03:11:41,037 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:41] "GET /socket.io/?EIO=4&transport=polling&t=PpAFxuf&sid=ml2A405DBrjtji6IAAAG HTTP/1.1" 200 -
+2026-03-08 03:11:46,254 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "GET / HTTP/1.1" 200 -
+2026-03-08 03:11:46,277 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:11:46,279 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "GET /socket.io/?EIO=4&transport=websocket&sid=ml2A405DBrjtji6IAAAG HTTP/1.1" 200 -
+2026-03-08 03:11:46,279 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:11:46,280 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:11:46,287 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "GET /socket.io/?EIO=4&transport=polling&t=PpAFzAj HTTP/1.1" 200 -
+2026-03-08 03:11:46,312 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "POST /socket.io/?EIO=4&transport=polling&t=PpAFzB5&sid=ROGeL4CCPh6LJUFtAAAI HTTP/1.1" 200 -
+2026-03-08 03:11:46,314 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "GET /socket.io/?EIO=4&transport=polling&t=PpAFzB6&sid=ROGeL4CCPh6LJUFtAAAI HTTP/1.1" 200 -
+2026-03-08 03:11:46,318 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:11:46] "GET /socket.io/?EIO=4&transport=polling&t=PpAFzBB&sid=ROGeL4CCPh6LJUFtAAAI HTTP/1.1" 200 -
+2026-03-08 03:12:04,931 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:04] "GET / HTTP/1.1" 200 -
+2026-03-08 03:12:04,951 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:04] "GET /socket.io/?EIO=4&transport=websocket&sid=ROGeL4CCPh6LJUFtAAAI HTTP/1.1" 200 -
+2026-03-08 03:12:04,985 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:04] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-03-08 03:12:04,986 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:04] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:12:04,987 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:04] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:12:04,994 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:04] "GET /socket.io/?EIO=4&transport=polling&t=PpAG1k_ HTTP/1.1" 200 -
+2026-03-08 03:12:05,041 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:05] "POST /socket.io/?EIO=4&transport=polling&t=PpAG1li&sid=Dn-B0bzGv8AXHRivAAAK HTTP/1.1" 200 -
+2026-03-08 03:12:05,041 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:05] "GET /socket.io/?EIO=4&transport=polling&t=PpAG1ll&sid=Dn-B0bzGv8AXHRivAAAK HTTP/1.1" 200 -
+2026-03-08 03:12:05,049 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:05] "GET /socket.io/?EIO=4&transport=polling&t=PpAG1ls&sid=Dn-B0bzGv8AXHRivAAAK HTTP/1.1" 200 -
+2026-03-08 03:12:05,049 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:05] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+2026-03-08 03:12:05,053 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:05] "GET /socket.io/?EIO=4&transport=polling&t=PpAG1lx&sid=Dn-B0bzGv8AXHRivAAAK HTTP/1.1" 200 -
+2026-03-08 03:12:48,002 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:12:48] "POST /api/scan HTTP/1.1" 200 -
+2026-03-08 03:13:41,488 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "GET / HTTP/1.1" 200 -
+2026-03-08 03:13:41,502 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "GET /socket.io/?EIO=4&transport=websocket&sid=Dn-B0bzGv8AXHRivAAAK HTTP/1.1" 200 -
+2026-03-08 03:13:41,523 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:13:41,525 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:13:41,526 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:13:41,530 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "GET /socket.io/?EIO=4&transport=polling&t=PpAGPJO HTTP/1.1" 200 -
+2026-03-08 03:13:41,557 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "POST /socket.io/?EIO=4&transport=polling&t=PpAGPJl&sid=R0IZuIl8nVA37SVeAAAM HTTP/1.1" 200 -
+2026-03-08 03:13:41,558 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "GET /socket.io/?EIO=4&transport=polling&t=PpAGPJm&sid=R0IZuIl8nVA37SVeAAAM HTTP/1.1" 200 -
+2026-03-08 03:13:41,568 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "GET /socket.io/?EIO=4&transport=polling&t=PpAGPJ-&sid=R0IZuIl8nVA37SVeAAAM HTTP/1.1" 200 -
+2026-03-08 03:13:41,573 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+2026-03-08 03:13:41,574 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:41] "GET /socket.io/?EIO=4&transport=polling&t=PpAGPK2&sid=R0IZuIl8nVA37SVeAAAM HTTP/1.1" 200 -
+2026-03-08 03:13:57,250 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:13:57,265 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:13:57,271 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "GET /socket.io/?EIO=4&transport=websocket&sid=R0IZuIl8nVA37SVeAAAM HTTP/1.1" 200 -
+2026-03-08 03:13:57,272 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:13:57,272 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:13:57,292 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "GET /socket.io/?EIO=4&transport=polling&t=PpAGT9g HTTP/1.1" 200 -
+2026-03-08 03:13:57,299 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "POST /socket.io/?EIO=4&transport=polling&t=PpAGT9k&sid=MHTFUv-5e_wYDFnNAAAO HTTP/1.1" 200 -
+2026-03-08 03:13:57,301 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:57] "GET /socket.io/?EIO=4&transport=polling&t=PpAGT9l&sid=MHTFUv-5e_wYDFnNAAAO HTTP/1.1" 200 -
+2026-03-08 03:13:59,051 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "GET /results/scan_1772919768_snu HTTP/1.1" 200 -
+2026-03-08 03:13:59,066 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "GET /socket.io/?EIO=4&transport=websocket&sid=MHTFUv-5e_wYDFnNAAAO HTTP/1.1" 200 -
+2026-03-08 03:13:59,067 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:13:59,068 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:13:59,068 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:13:59,096 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAGTbs HTTP/1.1" 200 -
+2026-03-08 03:13:59,101 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "POST /socket.io/?EIO=4&transport=polling&t=PpAGTbx&sid=_r-6Q_oP1TF_jzJHAAAQ HTTP/1.1" 200 -
+2026-03-08 03:13:59,102 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:13:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAGTbx.0&sid=_r-6Q_oP1TF_jzJHAAAQ HTTP/1.1" 200 -
+2026-03-08 03:14:33,116 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "GET / HTTP/1.1" 200 -
+2026-03-08 03:14:33,142 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "GET /socket.io/?EIO=4&transport=websocket&sid=_r-6Q_oP1TF_jzJHAAAQ HTTP/1.1" 200 -
+2026-03-08 03:14:33,143 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:14:33,150 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:14:33,151 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:14:33,166 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "GET /socket.io/?EIO=4&transport=polling&t=PpAGbwA HTTP/1.1" 200 -
+2026-03-08 03:14:33,171 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "POST /socket.io/?EIO=4&transport=polling&t=PpAGbwG&sid=J822Z8wHvvKqNb6vAAAS HTTP/1.1" 200 -
+2026-03-08 03:14:33,175 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "GET /socket.io/?EIO=4&transport=polling&t=PpAGbwG.0&sid=J822Z8wHvvKqNb6vAAAS HTTP/1.1" 200 -
+2026-03-08 03:14:33,179 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:14:33] "GET /socket.io/?EIO=4&transport=polling&t=PpAGbwP&sid=J822Z8wHvvKqNb6vAAAS HTTP/1.1" 200 -
+2026-03-08 03:16:17,464 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/core/platforms.py', reloading
+2026-03-08 03:16:17,600 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:16:18,052 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:16:18,061 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:16:18,685 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:16:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAG_gs HTTP/1.1" 200 -
+2026-03-08 03:16:18,689 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:16:18] "POST /socket.io/?EIO=4&transport=polling&t=PpAG_g_&sid=OO-vipWPI5h3VwiwAAAA HTTP/1.1" 200 -
+2026-03-08 03:16:18,693 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:16:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAG_h0&sid=OO-vipWPI5h3VwiwAAAA HTTP/1.1" 200 -
+2026-03-08 03:16:18,695 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:16:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAG_h6&sid=OO-vipWPI5h3VwiwAAAA HTTP/1.1" 200 -
+2026-03-08 03:17:32,192 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:17:32] "GET / HTTP/1.1" 200 -
+2026-03-08 03:17:32,386 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:17:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:17:32,386 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:17:32] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:17:32,387 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:17:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:17:32,568 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:17:32] "GET /socket.io/?EIO=4&transport=polling&t=PpAHHjB HTTP/1.1" 200 -
+2026-03-08 03:17:32,574 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:17:32] "POST /socket.io/?EIO=4&transport=polling&t=PpAHHjQ&sid=CmCkEVURQcHI4sueAAAC HTTP/1.1" 200 -
+2026-03-08 03:17:32,590 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:17:32] "GET /socket.io/?EIO=4&transport=polling&t=PpAHHjV&sid=CmCkEVURQcHI4sueAAAC HTTP/1.1" 200 -
+2026-03-08 03:19:35,218 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "GET / HTTP/1.1" 200 -
+2026-03-08 03:19:35,229 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "GET /socket.io/?EIO=4&transport=websocket&sid=CmCkEVURQcHI4sueAAAC HTTP/1.1" 200 -
+2026-03-08 03:19:35,239 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:19:35,240 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:19:35,240 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:19:35,244 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "GET /socket.io/?EIO=4&transport=polling&t=PpAHlgA HTTP/1.1" 200 -
+2026-03-08 03:19:35,272 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "POST /socket.io/?EIO=4&transport=polling&t=PpAHlgb&sid=qH6lLU5V9PKdw6XFAAAE HTTP/1.1" 200 -
+2026-03-08 03:19:35,274 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "GET /socket.io/?EIO=4&transport=polling&t=PpAHlgb.0&sid=qH6lLU5V9PKdw6XFAAAE HTTP/1.1" 200 -
+2026-03-08 03:19:35,280 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+2026-03-08 03:19:35,281 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:35] "GET /socket.io/?EIO=4&transport=polling&t=PpAHlgm&sid=qH6lLU5V9PKdw6XFAAAE HTTP/1.1" 200 -
+2026-03-08 03:19:37,644 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:19:37,657 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:19:37,660 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "GET /socket.io/?EIO=4&transport=websocket&sid=qH6lLU5V9PKdw6XFAAAE HTTP/1.1" 200 -
+2026-03-08 03:19:37,663 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:19:37,664 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:19:37,680 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAHmGD HTTP/1.1" 200 -
+2026-03-08 03:19:37,687 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "POST /socket.io/?EIO=4&transport=polling&t=PpAHmGJ&sid=a5XX-933ie1zlc1LAAAG HTTP/1.1" 200 -
+2026-03-08 03:19:37,688 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAHmGJ.0&sid=a5XX-933ie1zlc1LAAAG HTTP/1.1" 200 -
+2026-03-08 03:19:37,691 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAHmGP&sid=a5XX-933ie1zlc1LAAAG HTTP/1.1" 200 -
+2026-03-08 03:19:40,624 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:19:40,638 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "GET /socket.io/?EIO=4&transport=websocket&sid=a5XX-933ie1zlc1LAAAG HTTP/1.1" 200 -
+2026-03-08 03:19:40,639 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:19:40,640 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:19:40,642 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:19:40,666 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "GET /socket.io/?EIO=4&transport=polling&t=PpAHm-u HTTP/1.1" 200 -
+2026-03-08 03:19:40,673 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "POST /socket.io/?EIO=4&transport=polling&t=PpAHm--&sid=ARTORbYM69Mtl3Q3AAAI HTTP/1.1" 200 -
+2026-03-08 03:19:40,673 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "GET /socket.io/?EIO=4&transport=polling&t=PpAHm--.0&sid=ARTORbYM69Mtl3Q3AAAI HTTP/1.1" 200 -
+2026-03-08 03:19:40,677 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:40] "GET /socket.io/?EIO=4&transport=polling&t=PpAHm_4&sid=ARTORbYM69Mtl3Q3AAAI HTTP/1.1" 200 -
+2026-03-08 03:19:44,661 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:19:44,681 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:19:44,681 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:19:44,682 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "GET /socket.io/?EIO=4&transport=websocket&sid=OO-vipWPI5h3VwiwAAAA HTTP/1.1" 200 -
+2026-03-08 03:19:44,687 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:19:44,693 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "GET /socket.io/?EIO=4&transport=polling&t=PpAHnzn HTTP/1.1" 200 -
+2026-03-08 03:19:44,714 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "POST /socket.io/?EIO=4&transport=polling&t=PpAHn-6&sid=fJuJ6-hcFLTh0SabAAAK HTTP/1.1" 200 -
+2026-03-08 03:19:44,721 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:44] "GET /socket.io/?EIO=4&transport=polling&t=PpAHn-6.0&sid=fJuJ6-hcFLTh0SabAAAK HTTP/1.1" 200 -
+2026-03-08 03:19:45,109 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:19:45,124 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "GET /socket.io/?EIO=4&transport=websocket&sid=fJuJ6-hcFLTh0SabAAAK HTTP/1.1" 200 -
+2026-03-08 03:19:45,127 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:19:45,128 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:19:45,130 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:19:45,134 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "GET /socket.io/?EIO=4&transport=polling&t=PpAHo4h HTTP/1.1" 200 -
+2026-03-08 03:19:45,150 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "POST /socket.io/?EIO=4&transport=polling&t=PpAHo4x&sid=g1LItRbpHu18gkclAAAM HTTP/1.1" 200 -
+2026-03-08 03:19:45,153 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:45] "GET /socket.io/?EIO=4&transport=polling&t=PpAHo4y&sid=g1LItRbpHu18gkclAAAM HTTP/1.1" 200 -
+2026-03-08 03:19:46,080 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "GET / HTTP/1.1" 200 -
+2026-03-08 03:19:46,095 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "GET /socket.io/?EIO=4&transport=websocket&sid=g1LItRbpHu18gkclAAAM HTTP/1.1" 200 -
+2026-03-08 03:19:46,096 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:19:46,097 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:19:46,098 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:19:46,102 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "GET /socket.io/?EIO=4&transport=polling&t=PpAHoJp HTTP/1.1" 200 -
+2026-03-08 03:19:46,118 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "POST /socket.io/?EIO=4&transport=polling&t=PpAHoK3&sid=TFrxKZkq-JGZRxSDAAAO HTTP/1.1" 200 -
+2026-03-08 03:19:46,121 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "GET /socket.io/?EIO=4&transport=polling&t=PpAHoK4&sid=TFrxKZkq-JGZRxSDAAAO HTTP/1.1" 200 -
+2026-03-08 03:19:46,124 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:46] "GET /socket.io/?EIO=4&transport=polling&t=PpAHoKA&sid=TFrxKZkq-JGZRxSDAAAO HTTP/1.1" 200 -
+2026-03-08 03:19:47,093 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:19:47,105 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:19:47,109 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "GET /socket.io/?EIO=4&transport=websocket&sid=TFrxKZkq-JGZRxSDAAAO HTTP/1.1" 200 -
+2026-03-08 03:19:47,111 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:19:47,112 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:19:47,115 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "GET /socket.io/?EIO=4&transport=polling&t=PpAHoZf HTTP/1.1" 200 -
+2026-03-08 03:19:47,130 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "POST /socket.io/?EIO=4&transport=polling&t=PpAHoZs&sid=c65HD7Nag3VXqIP-AAAQ HTTP/1.1" 200 -
+2026-03-08 03:19:47,131 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "GET /socket.io/?EIO=4&transport=polling&t=PpAHoZt&sid=c65HD7Nag3VXqIP-AAAQ HTTP/1.1" 200 -
+2026-03-08 03:19:47,135 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:19:47] "GET /socket.io/?EIO=4&transport=polling&t=PpAHoZz&sid=c65HD7Nag3VXqIP-AAAQ HTTP/1.1" 200 -
+2026-03-08 03:20:15,441 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:15] "POST /api/scan HTTP/1.1" 200 -
+2026-03-08 03:20:24,439 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/app.py', reloading
+2026-03-08 03:20:24,751 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:20:25,220 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:20:25,228 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:20:25,608 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "GET /socket.io/?EIO=4&transport=polling&t=PpAHxz5 HTTP/1.1" 200 -
+2026-03-08 03:20:25,613 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "POST /socket.io/?EIO=4&transport=polling&t=PpAHxz9&sid=k6NTC-ootnPgEuaBAAAA HTTP/1.1" 200 -
+2026-03-08 03:20:25,615 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "GET /socket.io/?EIO=4&transport=polling&t=PpAHxzA&sid=k6NTC-ootnPgEuaBAAAA HTTP/1.1" 200 -
+2026-03-08 03:20:25,618 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "GET /socket.io/?EIO=4&transport=polling&t=PpAHxzG&sid=k6NTC-ootnPgEuaBAAAA HTTP/1.1" 200 -
+2026-03-08 03:20:25,738 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "GET /socket.io/?EIO=4&transport=polling&t=PpAHx_6 HTTP/1.1" 200 -
+2026-03-08 03:20:25,742 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "POST /socket.io/?EIO=4&transport=polling&t=PpAHx_B&sid=5ucf2lJvYxJPNABLAAAC HTTP/1.1" 200 -
+2026-03-08 03:20:25,744 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "GET /socket.io/?EIO=4&transport=polling&t=PpAHx_D&sid=5ucf2lJvYxJPNABLAAAC HTTP/1.1" 200 -
+2026-03-08 03:20:25,747 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:20:25] "GET /socket.io/?EIO=4&transport=polling&t=PpAHx_I&sid=5ucf2lJvYxJPNABLAAAC HTTP/1.1" 200 -
+2026-03-08 03:21:28,070 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/app.py', reloading
+2026-03-08 03:21:28,147 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:21:28,608 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:21:28,616 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:21:29,351 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:29] "GET /socket.io/?EIO=4&transport=polling&t=PpAIBX4 HTTP/1.1" 200 -
+2026-03-08 03:21:29,357 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:29] "POST /socket.io/?EIO=4&transport=polling&t=PpAIBX9&sid=KbbKKWjEfrRn4zUJAAAA HTTP/1.1" 200 -
+2026-03-08 03:21:29,359 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:29] "GET /socket.io/?EIO=4&transport=polling&t=PpAIBX9.0&sid=KbbKKWjEfrRn4zUJAAAA HTTP/1.1" 200 -
+2026-03-08 03:21:29,643 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:29] "GET /socket.io/?EIO=4&transport=polling&t=PpAIBbe HTTP/1.1" 200 -
+2026-03-08 03:21:29,647 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:29] "POST /socket.io/?EIO=4&transport=polling&t=PpAIBbj&sid=-UuJJcOTEfhzuimkAAAC HTTP/1.1" 200 -
+2026-03-08 03:21:29,648 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:29] "GET /socket.io/?EIO=4&transport=polling&t=PpAIBbk&sid=-UuJJcOTEfhzuimkAAAC HTTP/1.1" 200 -
+2026-03-08 03:21:29,655 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:29] "GET /socket.io/?EIO=4&transport=polling&t=PpAIBbp&sid=-UuJJcOTEfhzuimkAAAC HTTP/1.1" 200 -
+2026-03-08 03:21:59,911 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "GET /settings HTTP/1.1" 200 -
+2026-03-08 03:21:59,939 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "GET /socket.io/?EIO=4&transport=websocket&sid=-UuJJcOTEfhzuimkAAAC HTTP/1.1" 200 -
+2026-03-08 03:21:59,944 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:21:59,945 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:21:59,945 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:21:59,975 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAII_a HTTP/1.1" 200 -
+2026-03-08 03:21:59,983 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "POST /socket.io/?EIO=4&transport=polling&t=PpAII_g&sid=dQmD4F5fE7574BBnAAAE HTTP/1.1" 200 -
+2026-03-08 03:21:59,989 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAII_g.0&sid=dQmD4F5fE7574BBnAAAE HTTP/1.1" 200 -
+2026-03-08 03:21:59,994 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:21:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAII_s&sid=dQmD4F5fE7574BBnAAAE HTTP/1.1" 200 -
+2026-03-08 03:22:06,086 [blindseeker.tor] ERROR: Tor connection check failed: SOCKSHTTPSConnectionPool(host='check.torproject.org', port=443): Max retries exceeded with url: /api/ip (Caused by NewConnectionError('<urllib3.contrib.socks.SOCKSHTTPSConnection object at 0x110089b80>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2026-03-08 03:22:06,086 [blindseeker.tor] WARNING: Tor enabled but connection verification failed. Ensure Tor service is running on 127.0.0.1:9050
+2026-03-08 03:22:06,086 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:22:06] "POST /api/settings HTTP/1.1" 200 -
+2026-03-08 03:22:13,426 [blindseeker.tor] INFO: Tor disabled
+2026-03-08 03:22:13,427 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:22:13] "POST /api/settings HTTP/1.1" 200 -
+2026-03-08 03:23:03,468 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "GET / HTTP/1.1" 200 -
+2026-03-08 03:23:03,489 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "GET /socket.io/?EIO=4&transport=websocket&sid=dQmD4F5fE7574BBnAAAE HTTP/1.1" 200 -
+2026-03-08 03:23:03,490 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:23:03,490 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:23:03,491 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:23:03,494 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "GET /socket.io/?EIO=4&transport=polling&t=PpAIYW5 HTTP/1.1" 200 -
+2026-03-08 03:23:03,520 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "POST /socket.io/?EIO=4&transport=polling&t=PpAIYWN&sid=Z76IxYjZDlvnnxbUAAAG HTTP/1.1" 200 -
+2026-03-08 03:23:03,520 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "GET /socket.io/?EIO=4&transport=polling&t=PpAIYWO&sid=Z76IxYjZDlvnnxbUAAAG HTTP/1.1" 200 -
+2026-03-08 03:23:03,529 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:03] "GET /socket.io/?EIO=4&transport=polling&t=PpAIYWe&sid=Z76IxYjZDlvnnxbUAAAG HTTP/1.1" 200 -
+2026-03-08 03:23:14,236 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "GET / HTTP/1.1" 200 -
+2026-03-08 03:23:14,241 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "GET /socket.io/?EIO=4&transport=websocket&sid=Z76IxYjZDlvnnxbUAAAG HTTP/1.1" 200 -
+2026-03-08 03:23:14,249 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:23:14,251 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:23:14,251 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:23:14,270 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "GET /socket.io/?EIO=4&transport=polling&t=PpAIb8R HTTP/1.1" 200 -
+2026-03-08 03:23:14,275 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "POST /socket.io/?EIO=4&transport=polling&t=PpAIb8V&sid=Umd2Cvzsesg0sKmyAAAI HTTP/1.1" 200 -
+2026-03-08 03:23:14,278 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "GET /socket.io/?EIO=4&transport=polling&t=PpAIb8V.0&sid=Umd2Cvzsesg0sKmyAAAI HTTP/1.1" 200 -
+2026-03-08 03:23:14,281 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:14] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+2026-03-08 03:23:18,137 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:23:18,153 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "GET /socket.io/?EIO=4&transport=websocket&sid=KbbKKWjEfrRn4zUJAAAA HTTP/1.1" 200 -
+2026-03-08 03:23:18,157 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:23:18,157 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:23:18,157 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:23:18,164 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAIc5H HTTP/1.1" 200 -
+2026-03-08 03:23:18,185 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "POST /socket.io/?EIO=4&transport=polling&t=PpAIc5c&sid=mvIwlQY08dylyuEsAAAK HTTP/1.1" 200 -
+2026-03-08 03:23:18,186 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAIc5d&sid=mvIwlQY08dylyuEsAAAK HTTP/1.1" 200 -
+2026-03-08 03:23:18,188 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAIc5h&sid=mvIwlQY08dylyuEsAAAK HTTP/1.1" 200 -
+2026-03-08 03:23:20,251 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:23:20,268 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "GET /socket.io/?EIO=4&transport=websocket&sid=mvIwlQY08dylyuEsAAAK HTTP/1.1" 200 -
+2026-03-08 03:23:20,269 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:23:20,269 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:23:20,270 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:23:20,285 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "GET /socket.io/?EIO=4&transport=polling&t=PpAIccR HTTP/1.1" 200 -
+2026-03-08 03:23:20,290 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "POST /socket.io/?EIO=4&transport=polling&t=PpAIccV&sid=wvgN-YCodo9L9SWCAAAM HTTP/1.1" 200 -
+2026-03-08 03:23:20,292 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "GET /socket.io/?EIO=4&transport=polling&t=PpAIccV.0&sid=wvgN-YCodo9L9SWCAAAM HTTP/1.1" 200 -
+2026-03-08 03:23:20,295 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:20] "GET /socket.io/?EIO=4&transport=polling&t=PpAIccc&sid=wvgN-YCodo9L9SWCAAAM HTTP/1.1" 200 -
+2026-03-08 03:23:21,490 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "GET / HTTP/1.1" 200 -
+2026-03-08 03:23:21,505 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "GET /socket.io/?EIO=4&transport=websocket&sid=wvgN-YCodo9L9SWCAAAM HTTP/1.1" 200 -
+2026-03-08 03:23:21,505 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:23:21,511 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:23:21,512 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:23:21,531 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "GET /socket.io/?EIO=4&transport=polling&t=PpAIcvu HTTP/1.1" 200 -
+2026-03-08 03:23:21,536 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "POST /socket.io/?EIO=4&transport=polling&t=PpAIcvz&sid=3zGgvf6eG6tEPzDEAAAO HTTP/1.1" 200 -
+2026-03-08 03:23:21,539 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "GET /socket.io/?EIO=4&transport=polling&t=PpAIcvz.0&sid=3zGgvf6eG6tEPzDEAAAO HTTP/1.1" 200 -
+2026-03-08 03:23:21,544 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:21] "GET /socket.io/?EIO=4&transport=polling&t=PpAIcw7&sid=3zGgvf6eG6tEPzDEAAAO HTTP/1.1" 200 -
+2026-03-08 03:23:36,368 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/core/engine.py', reloading
+2026-03-08 03:23:36,458 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:23:36,905 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:23:36,911 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:23:37,053 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAIgiO HTTP/1.1" 200 -
+2026-03-08 03:23:37,058 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:37] "POST /socket.io/?EIO=4&transport=polling&t=PpAIgiV&sid=APITeMKAH6f3_WGmAAAA HTTP/1.1" 200 -
+2026-03-08 03:23:37,059 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAIgiW&sid=APITeMKAH6f3_WGmAAAA HTTP/1.1" 200 -
+2026-03-08 03:23:37,061 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAIgia&sid=APITeMKAH6f3_WGmAAAA HTTP/1.1" 200 -
+2026-03-08 03:23:37,225 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAIgl7 HTTP/1.1" 200 -
+2026-03-08 03:23:37,230 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:37] "POST /socket.io/?EIO=4&transport=polling&t=PpAIglA&sid=hp6UX4zVatdx3MXmAAAC HTTP/1.1" 200 -
+2026-03-08 03:23:37,232 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:23:37] "GET /socket.io/?EIO=4&transport=polling&t=PpAIglB&sid=hp6UX4zVatdx3MXmAAAC HTTP/1.1" 200 -
+2026-03-08 03:26:06,865 [werkzeug] INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-08 03:26:06,866 [werkzeug] INFO: [33mPress CTRL+C to quit[0m
+2026-03-08 03:26:06,867 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:26:07,547 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:26:07,554 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:26:26,465 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:26] "GET / HTTP/1.1" 200 -
+2026-03-08 03:26:28,091 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-03-08 03:26:28,091 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/img/logo.png HTTP/1.1" 200 -
+2026-03-08 03:26:28,092 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/js/main.js HTTP/1.1" 200 -
+2026-03-08 03:26:28,315 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /socket.io/?EIO=4&transport=polling&t=PpAJKWD HTTP/1.1" 200 -
+2026-03-08 03:26:28,437 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "POST /socket.io/?EIO=4&transport=polling&t=PpAJKYE&sid=0P_MURhN6GB4qJULAAAA HTTP/1.1" 200 -
+2026-03-08 03:26:28,438 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /socket.io/?EIO=4&transport=polling&t=PpAJKYF&sid=0P_MURhN6GB4qJULAAAA HTTP/1.1" 200 -
+2026-03-08 03:26:28,657 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+2026-03-08 03:26:28,657 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+2026-03-08 03:26:28,658 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-08 03:26:28,659 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2026-03-08 03:26:28,659 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/img/logo.png HTTP/1.1" 200 -
+2026-03-08 03:26:28,659 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/img/favicon-48.png HTTP/1.1" 200 -
+2026-03-08 03:26:28,671 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/img/logo.png HTTP/1.1" 200 -
+2026-03-08 03:26:28,814 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/img/favicon-48.png HTTP/1.1" 200 -
+2026-03-08 03:26:28,816 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:28] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2026-03-08 03:26:33,487 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:26:33,811 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:26:33,812 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:26:33,812 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:26:33,817 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "GET /socket.io/?EIO=4&transport=polling&t=PpAJLsM HTTP/1.1" 200 -
+2026-03-08 03:26:33,848 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "POST /socket.io/?EIO=4&transport=polling&t=PpAJLsn&sid=956boFg_vi9d7H_hAAAC HTTP/1.1" 200 -
+2026-03-08 03:26:33,856 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "GET /socket.io/?EIO=4&transport=polling&t=PpAJLsn.0&sid=956boFg_vi9d7H_hAAAC HTTP/1.1" 200 -
+2026-03-08 03:26:33,864 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "GET /socket.io/?EIO=4&transport=polling&t=PpAJLt6&sid=956boFg_vi9d7H_hAAAC HTTP/1.1" 200 -
+2026-03-08 03:26:33,985 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:33] "[36mGET /static/img/favicon-48.png HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,159 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "GET / HTTP/1.1" 200 -
+2026-03-08 03:26:35,165 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,170 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,172 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,177 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/img/favicon-48.png HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,179 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "GET /socket.io/?EIO=4&transport=websocket&sid=956boFg_vi9d7H_hAAAC HTTP/1.1" 200 -
+2026-03-08 03:26:35,181 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,184 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,184 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,187 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:26:35,197 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "GET /socket.io/?EIO=4&transport=polling&t=PpAJMBu HTTP/1.1" 200 -
+2026-03-08 03:26:35,243 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "POST /socket.io/?EIO=4&transport=polling&t=PpAJMCc&sid=M8mRLemqKDLFXV0SAAAE HTTP/1.1" 200 -
+2026-03-08 03:26:35,244 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "GET /socket.io/?EIO=4&transport=polling&t=PpAJMCd&sid=M8mRLemqKDLFXV0SAAAE HTTP/1.1" 200 -
+2026-03-08 03:26:35,246 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:35] "GET /socket.io/?EIO=4&transport=polling&t=PpAJMCi&sid=M8mRLemqKDLFXV0SAAAE HTTP/1.1" 200 -
+2026-03-08 03:26:38,172 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:38] "GET /socket.io/?EIO=4&transport=websocket&sid=M8mRLemqKDLFXV0SAAAE HTTP/1.1" 200 -
+2026-03-08 03:26:53,320 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:26:53] "GET /socket.io/?EIO=4&transport=polling&t=PpAJKZ2&sid=0P_MURhN6GB4qJULAAAA HTTP/1.1" 200 -
+2026-03-08 03:27:18,178 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET / HTTP/1.1" 200 -
+2026-03-08 03:27:18,219 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-03-08 03:27:18,221 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET /static/js/main.js HTTP/1.1" 200 -
+2026-03-08 03:27:18,221 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET /static/img/logo.png HTTP/1.1" 200 -
+2026-03-08 03:27:18,600 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAJWo2 HTTP/1.1" 200 -
+2026-03-08 03:27:18,616 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "POST /socket.io/?EIO=4&transport=polling&t=PpAJWoB&sid=JlYVD2TfyzY2ZXiiAAAG HTTP/1.1" 200 -
+2026-03-08 03:27:18,616 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAJWoE&sid=JlYVD2TfyzY2ZXiiAAAG HTTP/1.1" 200 -
+2026-03-08 03:27:18,630 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET /socket.io/?EIO=4&transport=polling&t=PpAJWoZ&sid=JlYVD2TfyzY2ZXiiAAAG HTTP/1.1" 200 -
+2026-03-08 03:27:18,736 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:18] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+2026-03-08 03:27:33,716 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:27:33] "POST /api/scan HTTP/1.1" 200 -
+2026-03-08 03:28:30,213 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:28:30,285 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:28:30,291 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:28:30,291 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "GET /socket.io/?EIO=4&transport=websocket&sid=JlYVD2TfyzY2ZXiiAAAG HTTP/1.1" 200 -
+2026-03-08 03:28:30,292 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:28:30,333 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "GET /socket.io/?EIO=4&transport=polling&t=PpAJoIx HTTP/1.1" 200 -
+2026-03-08 03:28:30,350 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "POST /socket.io/?EIO=4&transport=polling&t=PpAJoJ5&sid=XiWz2nPRMXxU4d8YAAAI HTTP/1.1" 200 -
+2026-03-08 03:28:30,351 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "GET /socket.io/?EIO=4&transport=polling&t=PpAJoJ6&sid=XiWz2nPRMXxU4d8YAAAI HTTP/1.1" 200 -
+2026-03-08 03:28:30,353 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "GET /socket.io/?EIO=4&transport=polling&t=PpAJoJG&sid=XiWz2nPRMXxU4d8YAAAI HTTP/1.1" 200 -
+2026-03-08 03:28:30,357 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:30] "GET /socket.io/?EIO=4&transport=polling&t=PpAJoJI&sid=XiWz2nPRMXxU4d8YAAAI HTTP/1.1" 200 -
+2026-03-08 03:28:38,697 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "GET / HTTP/1.1" 200 -
+2026-03-08 03:28:38,779 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:28:38,782 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "GET /socket.io/?EIO=4&transport=websocket&sid=XiWz2nPRMXxU4d8YAAAI HTTP/1.1" 200 -
+2026-03-08 03:28:38,796 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:28:38,797 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:28:38,829 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "GET /socket.io/?EIO=4&transport=polling&t=PpAJqNh HTTP/1.1" 200 -
+2026-03-08 03:28:38,856 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "POST /socket.io/?EIO=4&transport=polling&t=PpAJqNs&sid=oNMHYLBNW-NB5ZMIAAAK HTTP/1.1" 200 -
+2026-03-08 03:28:38,856 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "GET /socket.io/?EIO=4&transport=polling&t=PpAJqNt&sid=oNMHYLBNW-NB5ZMIAAAK HTTP/1.1" 200 -
+2026-03-08 03:28:38,867 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "GET /socket.io/?EIO=4&transport=polling&t=PpAJqOD&sid=oNMHYLBNW-NB5ZMIAAAK HTTP/1.1" 200 -
+2026-03-08 03:28:38,878 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:38] "GET /socket.io/?EIO=4&transport=polling&t=PpAJqOM&sid=oNMHYLBNW-NB5ZMIAAAK HTTP/1.1" 200 -
+2026-03-08 03:28:49,968 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:49] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:28:50,006 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:50] "GET /socket.io/?EIO=4&transport=websocket&sid=oNMHYLBNW-NB5ZMIAAAK HTTP/1.1" 200 -
+2026-03-08 03:28:50,009 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:28:50,009 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:50] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:28:50,010 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:28:50,019 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:50] "GET /socket.io/?EIO=4&transport=polling&t=PpAJt6S HTTP/1.1" 200 -
+2026-03-08 03:28:50,035 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:50] "POST /socket.io/?EIO=4&transport=polling&t=PpAJt6l&sid=jj562EeoMSS4OP4gAAAM HTTP/1.1" 200 -
+2026-03-08 03:28:50,040 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:50] "GET /socket.io/?EIO=4&transport=polling&t=PpAJt6m&sid=jj562EeoMSS4OP4gAAAM HTTP/1.1" 200 -
+2026-03-08 03:28:59,117 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "GET /results/scan_1772920653_testuser123 HTTP/1.1" 200 -
+2026-03-08 03:28:59,142 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "GET /socket.io/?EIO=4&transport=websocket&sid=jj562EeoMSS4OP4gAAAM HTTP/1.1" 200 -
+2026-03-08 03:28:59,143 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:28:59,145 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:28:59,147 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:28:59,711 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAJvTy HTTP/1.1" 200 -
+2026-03-08 03:28:59,737 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "POST /socket.io/?EIO=4&transport=polling&t=PpAJvU8&sid=5mHF_qhYMJXbjao7AAAO HTTP/1.1" 200 -
+2026-03-08 03:28:59,745 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAJvU9&sid=5mHF_qhYMJXbjao7AAAO HTTP/1.1" 200 -
+2026-03-08 03:28:59,762 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAJvUh&sid=5mHF_qhYMJXbjao7AAAO HTTP/1.1" 200 -
+2026-03-08 03:28:59,768 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:28:59] "GET /socket.io/?EIO=4&transport=polling&t=PpAJvUq&sid=5mHF_qhYMJXbjao7AAAO HTTP/1.1" 200 -
+2026-03-08 03:33:36,121 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/core/name_parser.py', reloading
+2026-03-08 03:33:36,289 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:33:36,741 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:33:36,750 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:33:36,963 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:33:36] "GET /socket.io/?EIO=4&transport=polling&t=PpAKz9x HTTP/1.1" 200 -
+2026-03-08 03:33:36,969 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:33:36] "POST /socket.io/?EIO=4&transport=polling&t=PpAKzA5&sid=N86Dx39TJe14lskyAAAA HTTP/1.1" 200 -
+2026-03-08 03:33:36,972 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:33:36] "GET /socket.io/?EIO=4&transport=polling&t=PpAKzA7&sid=N86Dx39TJe14lskyAAAA HTTP/1.1" 200 -
+2026-03-08 03:33:36,974 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:33:36] "GET /socket.io/?EIO=4&transport=polling&t=PpAKzAD&sid=N86Dx39TJe14lskyAAAA HTTP/1.1" 200 -
+2026-03-08 03:34:43,602 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/app.py', reloading
+2026-03-08 03:34:43,683 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:34:44,113 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:34:44,123 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:34:45,161 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:34:45] "GET /socket.io/?EIO=4&transport=polling&t=PpALDpa HTTP/1.1" 200 -
+2026-03-08 03:34:45,169 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:34:45] "POST /socket.io/?EIO=4&transport=polling&t=PpALDph&sid=bCQFBMj1u4mPFzJ4AAAA HTTP/1.1" 200 -
+2026-03-08 03:34:45,169 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:34:45] "GET /socket.io/?EIO=4&transport=polling&t=PpALDpi&sid=bCQFBMj1u4mPFzJ4AAAA HTTP/1.1" 200 -
+2026-03-08 03:34:45,173 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:34:45] "GET /socket.io/?EIO=4&transport=polling&t=PpALDpp&sid=bCQFBMj1u4mPFzJ4AAAA HTTP/1.1" 200 -
+2026-03-08 03:35:02,942 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/app.py', reloading
+2026-03-08 03:35:03,011 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:35:03,403 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:35:03,415 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:35:04,518 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:35:04] "GET /socket.io/?EIO=4&transport=polling&t=PpALIY0 HTTP/1.1" 200 -
+2026-03-08 03:35:04,524 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:35:04] "POST /socket.io/?EIO=4&transport=polling&t=PpALIY7&sid=KY_Qn2cQll-KDJotAAAA HTTP/1.1" 200 -
+2026-03-08 03:35:04,526 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:35:04] "GET /socket.io/?EIO=4&transport=polling&t=PpALIY8&sid=KY_Qn2cQll-KDJotAAAA HTTP/1.1" 200 -
+2026-03-08 03:35:04,528 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:35:04] "GET /socket.io/?EIO=4&transport=polling&t=PpALIYF&sid=KY_Qn2cQll-KDJotAAAA HTTP/1.1" 200 -
+2026-03-08 03:39:05,223 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "[32mGET /results/scan_1772920653_testuser123 HTTP/1.1[0m" 302 -
+2026-03-08 03:39:05,240 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "GET / HTTP/1.1" 200 -
+2026-03-08 03:39:05,253 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "GET /socket.io/?EIO=4&transport=websocket&sid=KY_Qn2cQll-KDJotAAAA HTTP/1.1" 200 -
+2026-03-08 03:39:05,287 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:05,287 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:05,287 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:05,618 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "GET /socket.io/?EIO=4&transport=polling&t=PpAMDPE HTTP/1.1" 200 -
+2026-03-08 03:39:05,643 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "POST /socket.io/?EIO=4&transport=polling&t=PpAMDPd&sid=pxz1Q9WkEjXIpGNUAAAC HTTP/1.1" 200 -
+2026-03-08 03:39:05,644 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "GET /socket.io/?EIO=4&transport=polling&t=PpAMDPd.0&sid=pxz1Q9WkEjXIpGNUAAAC HTTP/1.1" 200 -
+2026-03-08 03:39:05,650 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "GET /socket.io/?EIO=4&transport=polling&t=PpAMDPl&sid=pxz1Q9WkEjXIpGNUAAAC HTTP/1.1" 200 -
+2026-03-08 03:39:05,652 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:05] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+2026-03-08 03:39:09,698 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:39:09,717 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:09,720 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "GET /socket.io/?EIO=4&transport=websocket&sid=pxz1Q9WkEjXIpGNUAAAC HTTP/1.1" 200 -
+2026-03-08 03:39:09,720 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:09,721 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:09,734 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "GET /socket.io/?EIO=4&transport=polling&t=PpAMEPa HTTP/1.1" 200 -
+2026-03-08 03:39:09,751 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "POST /socket.io/?EIO=4&transport=polling&t=PpAMEPp&sid=W_wySKj9DxWd-kXaAAAE HTTP/1.1" 200 -
+2026-03-08 03:39:09,752 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "GET /socket.io/?EIO=4&transport=polling&t=PpAMEPp.0&sid=W_wySKj9DxWd-kXaAAAE HTTP/1.1" 200 -
+2026-03-08 03:39:09,755 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:09] "GET /socket.io/?EIO=4&transport=polling&t=PpAMEPw&sid=W_wySKj9DxWd-kXaAAAE HTTP/1.1" 200 -
+2026-03-08 03:39:10,828 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:39:10,843 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "GET /socket.io/?EIO=4&transport=websocket&sid=W_wySKj9DxWd-kXaAAAE HTTP/1.1" 200 -
+2026-03-08 03:39:10,845 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:10,847 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:10,847 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:10,855 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "GET /socket.io/?EIO=4&transport=polling&t=PpAMEh6 HTTP/1.1" 200 -
+2026-03-08 03:39:10,876 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "POST /socket.io/?EIO=4&transport=polling&t=PpAMEhO&sid=sSiqmPOReOEuMSrfAAAG HTTP/1.1" 200 -
+2026-03-08 03:39:10,878 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "GET /socket.io/?EIO=4&transport=polling&t=PpAMEhO.0&sid=sSiqmPOReOEuMSrfAAAG HTTP/1.1" 200 -
+2026-03-08 03:39:10,880 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:10] "GET /socket.io/?EIO=4&transport=polling&t=PpAMEhV&sid=sSiqmPOReOEuMSrfAAAG HTTP/1.1" 200 -
+2026-03-08 03:39:12,078 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET / HTTP/1.1" 200 -
+2026-03-08 03:39:12,091 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /socket.io/?EIO=4&transport=websocket&sid=sSiqmPOReOEuMSrfAAAG HTTP/1.1" 200 -
+2026-03-08 03:39:12,092 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:12,093 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:12,094 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:12,102 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /socket.io/?EIO=4&transport=polling&t=PpAME-b HTTP/1.1" 200 -
+2026-03-08 03:39:12,118 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "POST /socket.io/?EIO=4&transport=polling&t=PpAME-k&sid=P0QTLazvcXrv-z0QAAAI HTTP/1.1" 200 -
+2026-03-08 03:39:12,118 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /socket.io/?EIO=4&transport=polling&t=PpAME-l&sid=P0QTLazvcXrv-z0QAAAI HTTP/1.1" 200 -
+2026-03-08 03:39:12,737 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:39:12,751 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:12,752 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /socket.io/?EIO=4&transport=websocket&sid=P0QTLazvcXrv-z0QAAAI HTTP/1.1" 200 -
+2026-03-08 03:39:12,754 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:12,755 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:12,762 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /socket.io/?EIO=4&transport=polling&t=PpAMF8u HTTP/1.1" 200 -
+2026-03-08 03:39:12,774 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "POST /socket.io/?EIO=4&transport=polling&t=PpAMF91&sid=uA5QZOtCxUbSV4IBAAAK HTTP/1.1" 200 -
+2026-03-08 03:39:12,774 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /socket.io/?EIO=4&transport=polling&t=PpAMF92&sid=uA5QZOtCxUbSV4IBAAAK HTTP/1.1" 200 -
+2026-03-08 03:39:12,780 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:12] "GET /socket.io/?EIO=4&transport=polling&t=PpAMF99&sid=uA5QZOtCxUbSV4IBAAAK HTTP/1.1" 200 -
+2026-03-08 03:39:13,749 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "GET /history HTTP/1.1" 200 -
+2026-03-08 03:39:13,765 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:13,766 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "GET /socket.io/?EIO=4&transport=websocket&sid=uA5QZOtCxUbSV4IBAAAK HTTP/1.1" 200 -
+2026-03-08 03:39:13,768 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:13,769 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:13,776 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "GET /socket.io/?EIO=4&transport=polling&t=PpAMFOk HTTP/1.1" 200 -
+2026-03-08 03:39:13,789 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "POST /socket.io/?EIO=4&transport=polling&t=PpAMFOv&sid=e5F-zlq4JvrnGCi1AAAM HTTP/1.1" 200 -
+2026-03-08 03:39:13,791 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "GET /socket.io/?EIO=4&transport=polling&t=PpAMFOw&sid=e5F-zlq4JvrnGCi1AAAM HTTP/1.1" 200 -
+2026-03-08 03:39:13,796 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:13] "GET /socket.io/?EIO=4&transport=polling&t=PpAMFP2&sid=e5F-zlq4JvrnGCi1AAAM HTTP/1.1" 200 -
+2026-03-08 03:39:14,166 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "GET /settings HTTP/1.1" 200 -
+2026-03-08 03:39:14,182 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:14,182 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "GET /socket.io/?EIO=4&transport=websocket&sid=e5F-zlq4JvrnGCi1AAAM HTTP/1.1" 200 -
+2026-03-08 03:39:14,184 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:14,184 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:14,192 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "GET /socket.io/?EIO=4&transport=polling&t=PpAMFVD HTTP/1.1" 200 -
+2026-03-08 03:39:14,215 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "POST /socket.io/?EIO=4&transport=polling&t=PpAMFVX&sid=YitA0Nnnab-EFEnHAAAO HTTP/1.1" 200 -
+2026-03-08 03:39:14,217 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "GET /socket.io/?EIO=4&transport=polling&t=PpAMFVX.0&sid=YitA0Nnnab-EFEnHAAAO HTTP/1.1" 200 -
+2026-03-08 03:39:14,220 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:14] "GET /socket.io/?EIO=4&transport=polling&t=PpAMFVg&sid=YitA0Nnnab-EFEnHAAAO HTTP/1.1" 200 -
+2026-03-08 03:39:22,701 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "GET / HTTP/1.1" 200 -
+2026-03-08 03:39:22,719 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "GET /socket.io/?EIO=4&transport=websocket&sid=YitA0Nnnab-EFEnHAAAO HTTP/1.1" 200 -
+2026-03-08 03:39:22,720 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-03-08 03:39:22,720 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:39:22,720 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:39:22,729 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "GET /socket.io/?EIO=4&transport=polling&t=PpAMHad HTTP/1.1" 200 -
+2026-03-08 03:39:22,740 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "POST /socket.io/?EIO=4&transport=polling&t=PpAMHam&sid=1tuPR9fDzyOlAy1bAAAQ HTTP/1.1" 200 -
+2026-03-08 03:39:22,741 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "GET /socket.io/?EIO=4&transport=polling&t=PpAMHan&sid=1tuPR9fDzyOlAy1bAAAQ HTTP/1.1" 200 -
+2026-03-08 03:39:22,751 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:39:22] "GET /socket.io/?EIO=4&transport=polling&t=PpAMHat&sid=1tuPR9fDzyOlAy1bAAAQ HTTP/1.1" 200 -
+2026-03-08 03:40:53,269 [werkzeug] INFO:  * Detected change in '/Users/aviksamanta/Desktop/Ultimate Project/Blindseeker/app.py', reloading
+2026-03-08 03:40:53,461 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:40:55,038 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:40:55,073 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:40:55,114 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:40:55] "GET /socket.io/?EIO=4&transport=polling&t=PpAMdyP HTTP/1.1" 200 -
+2026-03-08 03:40:55,136 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:40:55] "POST /socket.io/?EIO=4&transport=polling&t=PpAMe8P&sid=UrIFph9nxnrs6YCkAAAA HTTP/1.1" 200 -
+2026-03-08 03:40:55,153 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:40:55] "GET /socket.io/?EIO=4&transport=polling&t=PpAMe8Z&sid=UrIFph9nxnrs6YCkAAAA HTTP/1.1" 200 -
+2026-03-08 03:40:55,162 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:40:55] "GET /socket.io/?EIO=4&transport=polling&t=PpAMe8t&sid=UrIFph9nxnrs6YCkAAAA HTTP/1.1" 200 -
+2026-03-08 03:41:13,500 [werkzeug] INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-08 03:41:13,500 [werkzeug] INFO: [33mPress CTRL+C to quit[0m
+2026-03-08 03:41:13,500 [werkzeug] INFO:  * Restarting with stat
+2026-03-08 03:41:13,924 [werkzeug] WARNING:  * Debugger is active!
+2026-03-08 03:41:13,930 [werkzeug] INFO:  * Debugger PIN: 612-634-699
+2026-03-08 03:42:02,875 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:02] "GET /search HTTP/1.1" 200 -
+2026-03-08 03:42:02,944 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:02] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-03-08 03:42:02,946 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-03-08 03:42:02,950 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:02] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+2026-03-08 03:42:03,037 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:03] "GET /socket.io/?EIO=4&transport=polling&t=PpAMujN HTTP/1.1" 200 -
+2026-03-08 03:42:03,171 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:03] "POST /socket.io/?EIO=4&transport=polling&t=PpAMulV&sid=p_KpF5FZUcdu9EHwAAAA HTTP/1.1" 200 -
+2026-03-08 03:42:03,180 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:03] "GET /socket.io/?EIO=4&transport=polling&t=PpAMulY&sid=p_KpF5FZUcdu9EHwAAAA HTTP/1.1" 200 -
+2026-03-08 03:42:03,214 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:03] "GET /socket.io/?EIO=4&transport=polling&t=PpAMumD&sid=p_KpF5FZUcdu9EHwAAAA HTTP/1.1" 200 -
+2026-03-08 03:42:03,233 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:03] "GET /socket.io/?EIO=4&transport=polling&t=PpAMumN&sid=p_KpF5FZUcdu9EHwAAAA HTTP/1.1" 200 -
+2026-03-08 03:42:03,239 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:03] "[36mGET /static/img/favicon.ico HTTP/1.1[0m" 304 -
+2026-03-08 03:42:40,213 [werkzeug] INFO: 127.0.0.1 - - [08/Mar/2026 03:42:40] "POST /api/parse-names HTTP/1.1" 200 -

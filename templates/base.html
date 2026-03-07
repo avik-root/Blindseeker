@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blindseeker v1.0.0 - Advanced Username Enumeration Forensics Tool">
+    <title>{% block title %}Blindseeker v1.0.0{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='img/favicon-48.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/logo.png') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Lucide Icons (professional SVG icon library) -->
+    <script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blindseeker" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-name">BLINDSEEKER</span>
+                    <span class="logo-version">v1.0.0</span>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}"
+                    id="nav-dashboard">
+                    <i data-lucide="layout-dashboard" class="nav-icon-svg"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/search" class="nav-link {% if request.endpoint == 'search_page' %}active{% endif %}"
+                    id="nav-search">
+                    <i data-lucide="scan-search" class="nav-icon-svg"></i>
+                    <span>New Scan</span>
+                </a>
+            </li>
+            <li>
+                <a href="/history" class="nav-link {% if request.endpoint == 'history_page' %}active{% endif %}"
+                    id="nav-history">
+                    <i data-lucide="history" class="nav-icon-svg"></i>
+                    <span>History</span>
+                </a>
+            </li>
+            <li>
+                <a href="/settings" class="nav-link {% if request.endpoint == 'settings_page' %}active{% endif %}"
+                    id="nav-settings">
+                    <i data-lucide="settings" class="nav-icon-svg"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="status-indicator">
+                <span class="status-dot" id="ws-status"></span>
+                <span class="status-text" id="ws-status-text">Connecting...</span>
+            </div>
+            <div class="sidebar-meta">
+                <small>Developed by <strong class="dev-name">MintFire</strong></small>
+                <small>FOR AUTHORIZED USE ONLY</small>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="topbar">
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
+            <div class="topbar-title">{% block page_title %}Dashboard{% endblock %}</div>
+            <div class="topbar-actions">
+                <span class="platform-badge" id="platform-counter">0 Platforms</span>
+            </div>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        {% if error %}
+        <div class="error-container">
+            <h2>{{ error }}</h2>
+        </div>
+        {% endif %}
+
+        <div class="content-area">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>lucide.createIcons();</script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+# Blindseeker v1.0.0 - Dependencies
+# Core Framework
+Flask==3.1.0
+Flask-SocketIO==5.5.1
+eventlet==0.37.0
+
+# HTTP & Async
+aiohttp==3.11.13
+aiohttp-socks==0.9.1
+requests==2.32.3
+PySocks==1.7.1
+
+# CLI & Terminal
+click==8.1.8
+rich==13.9.4
+
+# Export Formats
+reportlab==4.2.5
+openpyxl==3.1.5
+dicttoxml==1.7.16
+
+# Tor Integration
+stem==1.8.2
+
+# Security & Utils
+python-dotenv==1.0.1
+fake-useragent==2.0.3
+colorama==0.4.6

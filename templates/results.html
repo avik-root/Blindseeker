@@ -1,0 +1,475 @@
+{% extends "base.html" %}
+{% block title %}Results — Blindseeker{% endblock %}
+{% block page_title %}
+<i data-lucide="file-search" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+OSINT Intelligence Report
+{% endblock %}
+
+{% block content %}
+<div class="results-page">
+    <!-- Summary Header -->
+    <div class="results-summary">
+        <div class="summary-header">
+            <div>
+                <h2 class="summary-username">@{{ scan.username }}</h2>
+                <span class="summary-id">{{ scan.scan_id }}</span>
+            </div>
+            <div class="summary-actions">
+                <div class="export-dropdown">
+                    <button class="btn btn-secondary" id="export-btn">
+                        <i data-lucide="download"
+                            style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i>
+                        Export
+                    </button>
+                    <div class="dropdown-menu" id="export-menu">
+                        <a href="#" onclick="exportResults('json')" class="dropdown-item">JSON</a>
+                        <a href="#" onclick="exportResults('csv')" class="dropdown-item">CSV</a>
+                        <a href="#" onclick="exportResults('pdf')" class="dropdown-item">PDF Report</a>
+                        <a href="#" onclick="exportResults('xml')" class="dropdown-item">XML</a>
+                        <a href="#" onclick="exportResults('html')" class="dropdown-item">HTML</a>
+                        <a href="#" onclick="exportResults('xlsx')" class="dropdown-item">XLSX</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid stats-grid-sm">
+            <div class="stat-card stat-primary">
+                <div class="stat-value">{{ scan.total_platforms }}</div>
+                <div class="stat-label">Platforms Scanned</div>
+            </div>
+            <div class="stat-card stat-success">
+                <div class="stat-value">{{ scan.found_count }}</div>
+                <div class="stat-label">Profiles Found</div>
+            </div>
+            <div class="stat-card stat-warning">
+                <div class="stat-value">{{ scan.error_count }}</div>
+                <div class="stat-label">Errors</div>
+            </div>
+            <div class="stat-card stat-info">
+                <div class="stat-value">{{ scan.duration_seconds }}s</div>
+                <div class="stat-label">Duration</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OSINT ANALYTICS SECTION -->
+    <div class="card card-glow" style="margin-bottom:24px;">
+        <div class="card-header">
+            <h2><i data-lucide="bar-chart-3"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-primary);"></i>
+                OSINT Analytics Dashboard</h2>
+            <span class="header-badge">INTELLIGENCE</span>
+        </div>
+        <div class="card-body">
+            <div class="chart-grid">
+                <div class="chart-box">
+                    <h4 class="chart-title"><i data-lucide="pie-chart"
+                            style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;color:var(--accent-primary);"></i>
+                        Category Footprint</h4>
+                    <canvas id="chart-category" height="260"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h4 class="chart-title"><i data-lucide="target"
+                            style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;color:var(--accent-info);"></i>
+                        Detection Summary</h4>
+                    <canvas id="chart-detection" height="260"></canvas>
+                </div>
+            </div>
+            <div class="chart-grid" style="margin-top:20px;">
+                <div class="chart-box">
+                    <h4 class="chart-title"><i data-lucide="timer"
+                            style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;color:var(--accent-warning);"></i>
+                        Response Time Distribution (ms)</h4>
+                    <canvas id="chart-response" height="260"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h4 class="chart-title"><i data-lucide="bar-chart-horizontal"
+                            style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;color:var(--accent-success);"></i>
+                        Platform Hit Rate by Category</h4>
+                    <canvas id="chart-hitrate" height="260"></canvas>
+                </div>
+            </div>
+            <div class="chart-grid" style="margin-top:20px;">
+                <div class="chart-box">
+                    <h4 class="chart-title"><i data-lucide="radar"
+                            style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;color:var(--accent-primary);"></i>
+                        Digital Presence Radar</h4>
+                    <canvas id="chart-radar" height="280"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h4 class="chart-title"><i data-lucide="gauge"
+                            style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;color:var(--accent-info);"></i>
+                        Scan Performance Metrics</h4>
+                    <canvas id="chart-performance" height="280"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTO EMAIL TRACE RESULTS -->
+    {% if scan.email_traces and scan.email_traces|length > 0 %}
+    <div class="card" style="margin-bottom:24px;">
+        <div class="card-header">
+            <h2><i data-lucide="mail-search"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-info);"></i>
+                Auto Email Intelligence</h2>
+            <span class="header-badge">{{ scan.email_traces|length }} TRACED</span>
+        </div>
+        <div class="card-body">
+            <div class="email-auto-grid">
+                {% for trace in scan.email_traces %}
+                <div class="email-card">
+                    <h5><i data-lucide="at-sign"
+                            style="width:12px;height:12px;display:inline;vertical-align:middle;margin-right:4px;"></i>
+                        {{ trace.email }}</h5>
+                    <p>Provider: <span class="val">{{ trace.provider_info.provider }}</span></p>
+                    <p>Privacy: <span class="val">{{ 'Yes' if trace.intelligence.privacy_email else 'No' }}</span></p>
+                    <p>Gravatar: <span class="val">{{ 'Found' if trace.gravatar.found else 'Not Found' }}</span></p>
+                    {% if trace.gravatar.found %}
+                    <p>Name: <span class="val">{{ trace.gravatar.display_name or 'N/A' }}</span></p>
+                    {% endif %}
+                    <p>Usernames: <span class="val">{{ trace.usernames_extracted|length }}</span></p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- MANUAL EMAIL OSINT TRACE -->
+    <div class="card" style="margin-bottom:24px;">
+        <div class="card-header">
+            <h2><i data-lucide="mail"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-warning);"></i>
+                Email OSINT Trace</h2>
+            <span class="header-badge">MANUAL</span>
+        </div>
+        <div class="card-body">
+            <div class="input-group" style="margin-bottom:16px;">
+                <input type="email" id="email-trace-input" class="input-cyber"
+                    placeholder="Enter email to trace (e.g. target@gmail.com)">
+                <button class="btn btn-primary" id="email-trace-btn" onclick="traceEmail()">
+                    <i data-lucide="search"
+                        style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i>
+                    <span class="btn-text">TRACE EMAIL</span>
+                    <span class="btn-loader" style="display:none;"></span>
+                </button>
+            </div>
+            <div id="email-trace-results" style="display:none;">
+                <div class="stats-grid stats-grid-sm" id="email-stats" style="margin-bottom:16px;"></div>
+                <div id="email-detail" class="email-detail-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <input type="text" id="result-search" class="input-cyber" placeholder="Filter platforms...">
+        <div class="filter-chips">
+            <button class="filter-chip active" data-cat="all">All</button>
+            {% for cat in scan.categories %}
+            <button class="filter-chip" data-cat="{{ cat }}">{{ cat|title }}</button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Found Profiles -->
+    {% if scan.found %}
+    <div class="card">
+        <div class="card-header">
+            <h2><i data-lucide="check-circle"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-success);"></i>
+                Found Profiles ({{ scan.found_count }})</h2>
+        </div>
+        <div class="card-body">
+            <div class="results-table-container">
+                <table class="results-table" id="found-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Platform</th>
+                            <th>Category</th>
+                            <th>Profile URL</th>
+                            <th>Status</th>
+                            <th>Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in scan.found %}
+                        <tr class="result-row" data-category="{{ r.category }}">
+                            <td>{{ loop.index }}</td>
+                            <td><strong>{{ r.platform }}</strong></td>
+                            <td><span class="badge badge-cat">{{ r.category|title }}</span></td>
+                            <td><a href="{{ r.url }}" target="_blank" rel="noopener" class="result-link">{{ r.url }}</a>
+                            </td>
+                            <td><span class="badge badge-success">FOUND</span></td>
+                            <td>{{ r.response_time or 'N/A' }} ms</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="card">
+        <div class="card-body empty-state">
+            <i data-lucide="search-x"
+                style="width:48px;height:48px;color:var(--text-secondary);margin-bottom:12px;"></i>
+            <h3>No profiles found</h3>
+            <p>The username was not detected on any scanned platform.</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Errors -->
+    {% if scan.errors %}
+    <div class="card">
+        <div class="card-header">
+            <h2><i data-lucide="alert-triangle"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-warning);"></i>
+                Errors ({{ scan.error_count }})</h2>
+        </div>
+        <div class="card-body">
+            <div class="results-table-container">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Category</th>
+                            <th>Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in scan.errors %}
+                        <tr class="result-row error-row">
+                            <td>{{ r.platform }}</td>
+                            <td><span class="badge badge-cat">{{ r.category|title }}</span></td>
+                            <td class="text-warning">{{ r.error }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+<style>
+    .chart-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .chart-box {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 18px;
+    }
+
+    .chart-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .email-detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .email-auto-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+    }
+
+    .email-card {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 14px;
+    }
+
+    .email-card h5 {
+        font-size: 12px;
+        color: var(--accent-primary);
+        margin-bottom: 8px;
+        text-transform: none;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+    }
+
+    .email-card p {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin: 4px 0;
+    }
+
+    .email-card .val {
+        color: var(--accent-info);
+        font-family: var(--font-mono);
+        font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+        .chart-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .email-detail-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    const SCAN_ID = "{{ scan.scan_id }}";
+    const scanData = {{ scan | tojson }};
+    const foundResults = scanData.found || [];
+    const allResults = scanData.results || [];
+    const errorResults = scanData.errors || [];
+
+    // Chart.js Global Config
+    Chart.defaults.color = '#8888aa';
+    Chart.defaults.borderColor = 'rgba(255,255,255,0.05)';
+    Chart.defaults.font.family = "'Inter', sans-serif";
+
+    const glowGreen = 'rgba(0,255,136,0.8)';
+    const glowBlue = 'rgba(0,136,255,0.8)';
+    const glowPurple = 'rgba(170,102,255,0.8)';
+    const glowOrange = 'rgba(255,170,0,0.8)';
+    const glowRed = 'rgba(255,68,102,0.8)';
+    const glowCyan = 'rgba(0,204,255,0.8)';
+    const chartColors = [glowGreen, glowBlue, glowPurple, glowOrange, glowCyan, glowRed,
+        'rgba(255,200,0,0.8)', 'rgba(100,255,200,0.8)', 'rgba(200,100,255,0.8)',
+        'rgba(255,150,100,0.8)', 'rgba(100,200,255,0.8)', 'rgba(200,255,100,0.8)',
+        'rgba(255,100,200,0.8)', 'rgba(150,150,255,0.8)', 'rgba(255,220,150,0.8)',
+        'rgba(100,255,100,0.8)', 'rgba(255,100,100,0.8)', 'rgba(100,100,255,0.8)',
+        'rgba(200,200,100,0.8)', 'rgba(150,255,200,0.8)', 'rgba(255,200,200,0.8)',
+        'rgba(200,150,255,0.8)', 'rgba(150,200,150,0.8)', 'rgba(255,150,200,0.8)'];
+
+    // 1. Category Footprint (Doughnut)
+    const catCounts = {};
+    foundResults.forEach(r => { const c = r.category || 'other'; catCounts[c] = (catCounts[c] || 0) + 1; });
+    const catLabels = Object.keys(catCounts).sort((a, b) => catCounts[b] - catCounts[a]);
+    const catValues = catLabels.map(c => catCounts[c]);
+    if (catLabels.length > 0) {
+        new Chart(document.getElementById('chart-category'), {
+            type: 'doughnut',
+            data: { labels: catLabels.map(c => c.charAt(0).toUpperCase() + c.slice(1)), datasets: [{ data: catValues, backgroundColor: chartColors.slice(0, catLabels.length), borderWidth: 0, hoverOffset: 8 }] },
+            options: { responsive: true, plugins: { legend: { position: 'right', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } } }, cutout: '55%' }
+        });
+    }
+
+    // 2. Detection Summary (Pie)
+    new Chart(document.getElementById('chart-detection'), {
+        type: 'pie',
+        data: { labels: ['Found', 'Not Found', 'Errors'], datasets: [{ data: [scanData.found_count || 0, scanData.not_found_count || 0, scanData.error_count || 0], backgroundColor: [glowGreen, 'rgba(85,85,119,0.6)', glowOrange], borderWidth: 0, hoverOffset: 8 }] },
+        options: { responsive: true, plugins: { legend: { position: 'right', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } } } }
+    });
+
+    // 3. Response Time (Bar)
+    const timeBuckets = { '0-100': 0, '100-300': 0, '300-500': 0, '500-1000': 0, '1000-3000': 0, '3000+': 0 };
+    foundResults.forEach(r => { const t = r.response_time || 0; if (t <= 100) timeBuckets['0-100']++; else if (t <= 300) timeBuckets['100-300']++; else if (t <= 500) timeBuckets['300-500']++; else if (t <= 1000) timeBuckets['500-1000']++; else if (t <= 3000) timeBuckets['1000-3000']++; else timeBuckets['3000+']++; });
+    new Chart(document.getElementById('chart-response'), {
+        type: 'bar',
+        data: { labels: Object.keys(timeBuckets), datasets: [{ label: 'Profiles', data: Object.values(timeBuckets), backgroundColor: [glowGreen, glowCyan, glowBlue, glowPurple, glowOrange, glowRed], borderRadius: 6, borderSkipped: false }] },
+        options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.03)' } } } }
+    });
+
+    // 4. Hit Rate (Horizontal Bar)
+    const totalPerCat = {}, foundPerCat = {};
+    (allResults.length ? allResults : foundResults.concat(errorResults)).forEach(r => { const c = r.category || 'other'; totalPerCat[c] = (totalPerCat[c] || 0) + 1; if (r.found) foundPerCat[c] = (foundPerCat[c] || 0) + 1; });
+    const useCats = Object.keys(totalPerCat).length > 0 ? Object.keys(totalPerCat) : catLabels;
+    useCats.sort((a, b) => ((foundPerCat[b] || 0) / (totalPerCat[b] || 1)) - ((foundPerCat[a] || 0) / (totalPerCat[a] || 1)));
+    const hitRateLabels = [], hitRateValues = [], hitRateColors = [];
+    useCats.forEach((c, i) => { hitRateLabels.push(c.charAt(0).toUpperCase() + c.slice(1)); hitRateValues.push(totalPerCat[c] ? Math.round((foundPerCat[c] || 0) / totalPerCat[c] * 100) : 0); hitRateColors.push(chartColors[i % chartColors.length]); });
+    new Chart(document.getElementById('chart-hitrate'), {
+        type: 'bar',
+        data: { labels: hitRateLabels, datasets: [{ label: 'Hit Rate %', data: hitRateValues, backgroundColor: hitRateColors, borderRadius: 6, borderSkipped: false }] },
+        options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, max: 100, grid: { color: 'rgba(255,255,255,0.03)' } }, y: { grid: { display: false } } } }
+    });
+
+    // 5. Radar
+    const radarCats = catLabels.slice(0, 10);
+    const radarValues = radarCats.map(c => catCounts[c] || 0);
+    if (radarCats.length >= 3) {
+        new Chart(document.getElementById('chart-radar'), {
+            type: 'radar',
+            data: { labels: radarCats.map(c => c.charAt(0).toUpperCase() + c.slice(1)), datasets: [{ label: 'Presence', data: radarValues, borderColor: glowGreen, backgroundColor: 'rgba(0,255,136,0.12)', pointBackgroundColor: glowGreen, borderWidth: 2, pointRadius: 4 }] },
+            options: { responsive: true, plugins: { legend: { display: false } }, scales: { r: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.06)' }, angleLines: { color: 'rgba(255,255,255,0.06)' }, pointLabels: { font: { size: 11 } } } } }
+        });
+    }
+
+    // 6. Performance (Polar)
+    const avgRT = foundResults.length > 0 ? Math.round(foundResults.reduce((s, r) => s + (r.response_time || 0), 0) / foundResults.length) : 0;
+    const sr = scanData.total_platforms > 0 ? Math.round((scanData.found_count / scanData.total_platforms) * 100) : 0;
+    new Chart(document.getElementById('chart-performance'), {
+        type: 'polarArea',
+        data: { labels: ['Found %', 'Success Rate', 'Avg Speed Score', 'Coverage'], datasets: [{ data: [sr, 100 - (scanData.error_count / (scanData.total_platforms || 1) * 100), Math.min(100, Math.round(100 - (avgRT / 30))), Math.round(scanData.total_platforms / 3.29)], backgroundColor: ['rgba(0,255,136,0.5)', 'rgba(0,136,255,0.5)', 'rgba(170,102,255,0.5)', 'rgba(0,204,255,0.5)'], borderWidth: 0 }] },
+        options: { responsive: true, plugins: { legend: { position: 'right', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } } }, scales: { r: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.06)' } } } }
+    });
+
+    // Email Trace
+    function traceEmail() {
+        const email = document.getElementById('email-trace-input').value.trim();
+        if (!email) return;
+        const btn = document.getElementById('email-trace-btn');
+        btn.disabled = true; btn.querySelector('.btn-text').textContent = 'TRACING...'; btn.querySelector('.btn-loader').style.display = 'inline-block';
+        fetch('/api/email-trace', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) })
+            .then(r => r.json())
+            .then(data => {
+                btn.disabled = false; btn.querySelector('.btn-text').textContent = 'TRACE EMAIL'; btn.querySelector('.btn-loader').style.display = 'none';
+                if (data.error) { alert(data.error); return; }
+                showEmailResults(data);
+            }).catch(err => { btn.disabled = false; btn.querySelector('.btn-text').textContent = 'TRACE EMAIL'; btn.querySelector('.btn-loader').style.display = 'none'; });
+    }
+
+    function showEmailResults(data) {
+        document.getElementById('email-trace-results').style.display = 'block';
+        const v = data.validation || {}, g = data.gravatar || {}, intel = data.intelligence || {}, provider = data.provider_info || {};
+        document.getElementById('email-stats').innerHTML = `
+            <div class="stat-card stat-primary"><div class="stat-value">${data.usernames_extracted?.length || 0}</div><div class="stat-label">Usernames</div></div>
+            <div class="stat-card ${g.found ? 'stat-success' : 'stat-muted'}"><div class="stat-value">${g.found ? 'Yes' : 'No'}</div><div class="stat-label">Gravatar</div></div>
+            <div class="stat-card stat-info"><div class="stat-value">${provider.provider || '?'}</div><div class="stat-label">Provider</div></div>
+            <div class="stat-card ${intel.privacy_email ? 'stat-warning' : 'stat-success'}"><div class="stat-value">${intel.privacy_email ? 'Private' : 'Public'}</div><div class="stat-label">Email Type</div></div>`;
+        let d = `<div class="email-card"><h5>Validation</h5><p>Email: <span class="val">${v.email}</span></p><p>Local: <span class="val">${v.local_part}</span></p><p>Domain: <span class="val">${v.domain}</span></p><p>MD5: <span class="val">${v.md5_hash?.substring(0, 20)}…</span></p></div>`;
+        d += `<div class="email-card"><h5>Extracted Usernames</h5>${(data.usernames_extracted || []).map(u => `<p><span class="val">${u}</span></p>`).join('')}</div>`;
+        if (g.found) d += `<div class="email-card"><h5>Gravatar Profile</h5><p>Name: <span class="val">${g.display_name || '—'}</span></p><p>URL: <span class="val"><a href="${g.profile_url}" target="_blank">${g.profile_url || '—'}</a></span></p><p>Location: <span class="val">${g.location || '—'}</span></p></div>`;
+        d += `<div class="email-card"><h5>Intelligence</h5><p>Provider: <span class="val">${provider.provider || '?'}</span></p><p>Region: <span class="val">${intel.region_hint || 'Global'}</span></p><p>Corporate: <span class="val">${intel.corporate_email ? 'Yes' : 'No'}</span></p><p>Privacy: <span class="val">${intel.privacy_email ? 'Encrypted' : 'Standard'}</span></p></div>`;
+        document.getElementById('email-detail').innerHTML = d;
+    }
+
+    // Export & Filter
+    function exportResults(fmt) { window.location.href = `/api/export/${SCAN_ID}/${fmt}`; }
+    document.getElementById('export-btn').addEventListener('click', function (e) { e.stopPropagation(); document.getElementById('export-menu').classList.toggle('show'); });
+    document.addEventListener('click', () => { document.getElementById('export-menu').classList.remove('show'); });
+    document.querySelectorAll('.filter-chip[data-cat]').forEach(chip => {
+        chip.addEventListener('click', function () {
+            document.querySelectorAll('.filter-chip[data-cat]').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            const cat = this.dataset.cat;
+            document.querySelectorAll('.result-row').forEach(row => { row.style.display = (cat === 'all' || row.dataset.category === cat) ? '' : 'none'; });
+        });
+    });
+    document.getElementById('result-search').addEventListener('input', function () {
+        const q = this.value.toLowerCase();
+        document.querySelectorAll('.result-row').forEach(row => { row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+    });
+
+    setTimeout(() => lucide.createIcons(), 50);
+</script>
+{% endblock %}

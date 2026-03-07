@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Blindseeker{% endblock %}
+{% block page_title %}
+<i data-lucide="layout-dashboard"
+    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;"></i> Command Center
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <!-- Hero Stats -->
+    <div class="stats-grid">
+        <div class="stat-card stat-primary">
+            <div class="stat-glow"></div>
+            <div class="stat-icon"><i data-lucide="radar"
+                    style="width:24px;height:24px;color:var(--accent-primary);"></i></div>
+            <div class="stat-value" id="stat-platforms">{{ platform_count }}</div>
+            <div class="stat-label">Total Platforms</div>
+        </div>
+        <div class="stat-card stat-success">
+            <div class="stat-glow"></div>
+            <div class="stat-icon"><i data-lucide="check-circle"
+                    style="width:24px;height:24px;color:var(--accent-success);"></i></div>
+            <div class="stat-value" id="stat-scans">{{ stats.total_scans }}</div>
+            <div class="stat-label">Scans Completed</div>
+        </div>
+        <div class="stat-card stat-info">
+            <div class="stat-glow"></div>
+            <div class="stat-icon"><i data-lucide="user-search"
+                    style="width:24px;height:24px;color:var(--accent-info);"></i></div>
+            <div class="stat-value" id="stat-found">{{ stats.total_found }}</div>
+            <div class="stat-label">Profiles Found</div>
+        </div>
+        <div class="stat-card stat-warning">
+            <div class="stat-glow"></div>
+            <div class="stat-icon"><i data-lucide="activity"
+                    style="width:24px;height:24px;color:var(--accent-warning);"></i></div>
+            <div class="stat-value" id="stat-active">{{ stats.active_scans }}</div>
+            <div class="stat-label">Active Scans</div>
+        </div>
+    </div>
+
+    <!-- Quick Scan Widget -->
+    <div class="card card-glow">
+        <div class="card-header">
+            <h2><i data-lucide="zap"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-primary);"></i>
+                Quick Scan</h2>
+        </div>
+        <div class="card-body">
+            <form id="quick-scan-form" class="quick-scan-form">
+                <div class="input-group">
+                    <input type="text" id="quick-username" class="input-cyber" placeholder="Enter target username..."
+                        autocomplete="off" maxlength="100" required>
+                    <button type="submit" class="btn btn-primary btn-glow" id="quick-scan-btn">
+                        <span class="btn-text">INITIATE SCAN</span>
+                        <span class="btn-loader" style="display:none"></span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Live Progress -->
+            <div id="quick-progress" class="scan-progress" style="display:none;">
+                <div class="progress-header">
+                    <span class="progress-label">Scanning: <strong id="progress-username"></strong></span>
+                    <span class="progress-count"><span id="progress-scanned">0</span> / <span
+                            id="progress-total">0</span></span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+                </div>
+                <div class="progress-stats">
+                    <span class="found-count">Found: <strong id="progress-found" class="text-success">0</strong></span>
+                    <span class="error-count">Errors: <strong id="progress-errors"
+                            class="text-warning">0</strong></span>
+                </div>
+            </div>
+
+            <!-- Live Results Feed -->
+            <div id="live-results" class="live-results" style="display:none;">
+                <div class="results-feed" id="results-feed"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Overview -->
+    <div class="card">
+        <div class="card-header">
+            <h2><i data-lucide="grid-3x3"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-info);"></i>
+                Platform Categories</h2>
+        </div>
+        <div class="card-body">
+            <div class="categories-grid">
+                {% for cat, count in categories.items() %}
+                <div class="category-card">
+                    <div class="category-count">{{ count }}</div>
+                    <div class="category-name">{{ cat | title }}</div>
+                    <div class="category-bar">
+                        <div class="category-fill" style="width: {{ (count / platform_count * 100) | round }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- System Status -->
+    <div class="status-grid">
+        <div class="card card-compact">
+            <div class="card-header">
+                <h3><i data-lucide="shield"
+                        style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i> Tor
+                    Network</h3>
+            </div>
+            <div class="card-body">
+                <div class="status-item">
+                    <span>Status</span>
+                    <span class="badge {{ 'badge-success' if stats.tor_status.enabled else 'badge-danger' }}">
+                        {{ 'Enabled' if stats.tor_status.enabled else 'Disabled' }}
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span>Connection</span>
+                    <span class="badge {{ 'badge-success' if stats.tor_status.connected else 'badge-muted' }}">
+                        {{ 'Connected' if stats.tor_status.connected else 'N/A' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="card card-compact">
+            <div class="card-header">
+                <h3><i data-lucide="globe"
+                        style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i> Proxy
+                    Manager</h3>
+            </div>
+            <div class="card-body">
+                <div class="status-item">
+                    <span>Status</span>
+                    <span class="badge {{ 'badge-success' if stats.proxy_status.enabled else 'badge-danger' }}">
+                        {{ 'Enabled' if stats.proxy_status.enabled else 'Disabled' }}
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span>Healthy Proxies</span>
+                    <span class="badge badge-info">{{ stats.proxy_status.healthy }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card card-compact">
+            <div class="card-header">
+                <h3><i data-lucide="cpu"
+                        style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                    Engine Status</h3>
+            </div>
+            <div class="card-body">
+                <div class="status-item">
+                    <span>Workers</span>
+                    <span class="badge badge-info">{{ config.MAX_WORKERS if config else 50 }}</span>
+                </div>
+                <div class="status-item">
+                    <span>Rate Limit</span>
+                    <span class="badge badge-info">{{ config.RATE_LIMIT_PER_SECOND if config else 10 }}/s</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>setTimeout(() => lucide.createIcons(), 50);</script>
+{% endblock %}

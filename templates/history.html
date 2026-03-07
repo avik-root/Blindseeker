@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}History — Blindseeker{% endblock %}
+{% block page_title %}
+<i data-lucide="history" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;"></i> Scan
+History
+{% endblock %}
+
+{% block content %}
+<div class="history-page">
+    <div class="card">
+        <div class="card-header">
+            <h2><i data-lucide="archive"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-info);"></i>
+                Previous Scans</h2>
+            <span class="header-badge">{{ scans|length }} Records</span>
+        </div>
+        <div class="card-body">
+            {% if scans %}
+            <div class="results-table-container">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Scan ID</th>
+                            <th>Status</th>
+                            <th>Found</th>
+                            <th>Total</th>
+                            <th>Duration</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for scan in scans %}
+                        <tr>
+                            <td><strong>{{ scan.username }}</strong></td>
+                            <td><code>{{ scan.scan_id[:20] }}...</code></td>
+                            <td>
+                                <span
+                                    class="badge {{ 'badge-success' if scan.status == 'completed' else 'badge-warning' }}">
+                                    {{ scan.status|upper }}
+                                </span>
+                            </td>
+                            <td class="text-success"><strong>{{ scan.found_count }}</strong></td>
+                            <td>{{ scan.total_platforms }}</td>
+                            <td>{{ scan.duration_seconds }}s</td>
+                            <td>{{ scan.start_time[:19] if scan.start_time else 'N/A' }}</td>
+                            <td>
+                                <a href="/results/{{ scan.scan_id }}" class="btn btn-sm btn-secondary">
+                                    <i data-lucide="external-link"
+                                        style="width:12px;height:12px;display:inline;vertical-align:middle;margin-right:2px;"></i>
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i data-lucide="inbox"
+                    style="width:48px;height:48px;color:var(--text-secondary);margin-bottom:12px;"></i>
+                <h3>No scan history</h3>
+                <p>Start a new scan to build your history.</p>
+                <a href="/search" class="btn btn-primary">
+                    <i data-lucide="scan-search"
+                        style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i>
+                    Start Scan
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script>setTimeout(() => lucide.createIcons(), 50);</script>
+{% endblock %}

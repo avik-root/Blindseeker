@@ -1,0 +1,452 @@
+{% extends "base.html" %}
+{% block title %}New Scan — Blindseeker{% endblock %}
+{% block page_title %}
+<i data-lucide="scan-search" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+New Scan
+{% endblock %}
+
+{% block content %}
+<div class="search-page">
+    <!-- Scan Mode Tabs -->
+    <div class="scan-tabs">
+        <button class="scan-tab active" data-mode="single" id="tab-single">
+            <i data-lucide="user" style="width:16px;height:16px;"></i> Single Username
+        </button>
+        <button class="scan-tab" data-mode="fullname" id="tab-fullname">
+            <i data-lucide="user-check" style="width:16px;height:16px;"></i> Full Name
+        </button>
+        <button class="scan-tab" data-mode="batch" id="tab-batch">
+            <i data-lucide="users" style="width:16px;height:16px;"></i> Multi-Target Batch
+        </button>
+    </div>
+
+    <!-- ═══ Mode 1: Single Username ═══ -->
+    <div class="card card-glow scan-mode-panel" id="panel-single">
+        <div class="card-header">
+            <h2><i data-lucide="search"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-primary);"></i>
+                Username Enumeration</h2>
+            <span class="header-badge">SINGLE</span>
+        </div>
+        <div class="card-body">
+            <form id="scan-form" class="scan-form">
+                <div class="form-group">
+                    <label for="scan-username" class="form-label">Target Username</label>
+                    <input type="text" id="scan-username" class="input-cyber input-lg"
+                        placeholder="Enter username to enumerate..." autocomplete="off" maxlength="100" required>
+                    <small class="form-hint">Alphanumeric username to search across all platforms</small>
+                </div>
+
+                <!-- Advanced Options -->
+                <div class="form-section">
+                    <div class="section-toggle" id="toggle-advanced">
+                        <span><i data-lucide="sliders-horizontal"
+                                style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i>
+                            Advanced Options</span>
+                    </div>
+                    <div class="section-content" id="advanced-options" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Timeout (seconds)</label>
+                                <input type="number" id="scan-timeout" class="input-cyber" value="15" min="5" max="60">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Max Workers</label>
+                                <input type="number" id="scan-workers" class="input-cyber" value="50" min="5" max="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="form-section">
+                    <label class="form-label">Platform Categories</label>
+                    <div class="category-filters">
+                        <label class="filter-chip active">
+                            <input type="checkbox" name="categories" value="all" checked> All
+                        </label>
+                        {% for cat, count in categories.items() %}
+                        <label class="filter-chip">
+                            <input type="checkbox" name="categories" value="{{ cat }}">
+                            {{ cat | title }} <small>({{ count }})</small>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-glow btn-full" id="scan-submit-btn">
+                    <i data-lucide="play"
+                        style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                    <span class="btn-text">START ENUMERATION</span>
+                    <span class="btn-loader" style="display:none"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══ Mode 2: Full Name ═══ -->
+    <div class="card card-glow scan-mode-panel" id="panel-fullname" style="display:none;">
+        <div class="card-header">
+            <h2><i data-lucide="fingerprint"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-info);"></i>
+                Full Name Intelligence</h2>
+            <span class="header-badge">NAME PARSE</span>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label class="form-label">Subject Full Name</label>
+                <input type="text" id="fullname-input" class="input-cyber input-lg"
+                    placeholder='e.g. "John Michael Smith" or "Smith, John M."' autocomplete="off">
+                <small class="form-hint">Auto-detects first, middle, and last name. Supports "Last, First"
+                    format.</small>
+            </div>
+            <button class="btn btn-secondary" id="parse-name-btn" onclick="parseName()" style="margin-bottom:16px;">
+                <i data-lucide="cpu"
+                    style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i>
+                Generate Username Variants
+            </button>
+            <div id="name-parsed-output" style="display:none;">
+                <div class="parse-info" id="name-info"></div>
+                <div class="form-group">
+                    <label class="form-label">Generated Usernames <span id="username-count-badge" class="header-badge"
+                            style="font-size:11px;"></span></label>
+                    <div id="generated-usernames" class="username-chips"></div>
+                </div>
+                <button class="btn btn-primary btn-lg btn-glow btn-full" id="scan-all-names-btn"
+                    onclick="scanAllParsedUsernames()">
+                    <i data-lucide="scan"
+                        style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                    <span class="btn-text">SCAN ALL VARIANTS</span>
+                    <span class="btn-loader" style="display:none"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ Mode 3: Multi-Target Batch ═══ -->
+    <div class="card card-glow scan-mode-panel" id="panel-batch" style="display:none;">
+        <div class="card-header">
+            <h2><i data-lucide="list-checks"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-warning);"></i>
+                Multi-Target Batch Scan</h2>
+            <span class="header-badge">BATCH</span>
+        </div>
+        <div class="card-body">
+            <div class="batch-mode-select" style="margin-bottom:14px;">
+                <label class="filter-chip active" id="batch-mode-name">
+                    <input type="radio" name="batch-mode" value="name" checked>
+                    <i data-lucide="user" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i> Full
+                    Names
+                </label>
+                <label class="filter-chip" id="batch-mode-username">
+                    <input type="radio" name="batch-mode" value="username">
+                    <i data-lucide="at-sign" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i>
+                    Usernames
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="form-label" id="batch-label">Paste Names (one per line)</label>
+                <textarea id="batch-input" class="input-cyber" rows="8"
+                    placeholder="John Smith&#10;Jane Doe&#10;Alex Johnson&#10;Robert Williams"></textarea>
+                <small class="form-hint" id="batch-hint">Paste full names — each will be auto-parsed into username
+                    variants and scanned.</small>
+            </div>
+            <button class="btn btn-primary btn-lg btn-glow btn-full" id="batch-scan-btn" onclick="startBatchScan()">
+                <i data-lucide="rocket"
+                    style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                <span class="btn-text">LAUNCH BATCH SCAN</span>
+                <span class="btn-loader" style="display:none"></span>
+            </button>
+            <div id="batch-progress" style="display:none; margin-top:16px;">
+                <div class="progress-header">
+                    <span>Batch Progress: <strong id="batch-current"></strong></span>
+                    <span><span id="batch-idx">0</span> / <span id="batch-total">0</span> targets</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="batch-bar" style="width:0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan Progress Panel (shared) -->
+    <div id="scan-progress-panel" class="card" style="display:none;">
+        <div class="card-header">
+            <h2><i data-lucide="loader" class="spin"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-primary);"></i>
+                Scan in Progress</h2>
+            <span class="header-badge" id="scan-status-badge">RUNNING</span>
+        </div>
+        <div class="card-body">
+            <div class="progress-header">
+                <span>Scanning: <strong id="sp-username"></strong></span>
+                <span><span id="sp-scanned">0</span> / <span id="sp-total">0</span> platforms</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="sp-bar" style="width:0%"></div>
+            </div>
+            <div class="progress-stats">
+                <span><i data-lucide="check-circle"
+                        style="width:12px;height:12px;display:inline;vertical-align:middle;color:var(--accent-success);"></i>
+                    Found: <strong id="sp-found" class="text-success">0</strong></span>
+                <span><i data-lucide="x-circle"
+                        style="width:12px;height:12px;display:inline;vertical-align:middle;color:#888;"></i> Not Found:
+                    <strong id="sp-not-found" class="text-muted">0</strong></span>
+                <span><i data-lucide="alert-triangle"
+                        style="width:12px;height:12px;display:inline;vertical-align:middle;color:var(--accent-warning);"></i>
+                    Errors: <strong id="sp-errors" class="text-warning">0</strong></span>
+            </div>
+
+            <div class="live-feed-container">
+                <div class="feed-header">
+                    <span>Live Results</span>
+                    <div class="feed-filters">
+                        <button class="feed-filter active" data-filter="all">All</button>
+                        <button class="feed-filter" data-filter="found">Found</button>
+                        <button class="feed-filter" data-filter="error">Errors</button>
+                    </div>
+                </div>
+                <div class="results-feed" id="sp-feed"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan Complete Panel -->
+    <div id="scan-complete-panel" class="card" style="display:none;">
+        <div class="card-header">
+            <h2><i data-lucide="check-circle-2"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;color:var(--accent-success);"></i>
+                Scan Complete</h2>
+        </div>
+        <div class="card-body">
+            <div class="complete-stats">
+                <div class="complete-stat">
+                    <div class="complete-value" id="sc-found">0</div>
+                    <div class="complete-label">Profiles Found</div>
+                </div>
+                <div class="complete-stat">
+                    <div class="complete-value" id="sc-duration">0s</div>
+                    <div class="complete-label">Duration</div>
+                </div>
+                <div class="complete-stat">
+                    <div class="complete-value" id="sc-total">0</div>
+                    <div class="complete-label">Platforms Scanned</div>
+                </div>
+            </div>
+            <div class="complete-actions">
+                <a id="sc-view-results" href="#" class="btn btn-primary btn-glow">
+                    <i data-lucide="external-link"
+                        style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i>
+                    View Full Results
+                </a>
+                <button class="btn btn-secondary" onclick="location.reload()">New Scan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .scan-tabs {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 20px;
+    }
+
+    .scan-tab {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 10px 18px;
+        cursor: pointer;
+        color: var(--text-secondary);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s;
+    }
+
+    .scan-tab:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text-primary);
+    }
+
+    .scan-tab.active {
+        background: rgba(0, 255, 136, 0.08);
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+    }
+
+    .username-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .username-chip {
+        background: rgba(0, 255, 136, 0.08);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 6px;
+        padding: 4px 12px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--accent-primary);
+    }
+
+    .parse-info {
+        background: rgba(0, 136, 255, 0.06);
+        border: 1px solid rgba(0, 136, 255, 0.15);
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 8px;
+    }
+
+    .parse-info .pi-item {
+        font-size: 12px;
+        color: var(--text-secondary);
+    }
+
+    .parse-info .pi-val {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-family: var(--font-mono);
+    }
+
+    .batch-mode-select {
+        display: flex;
+        gap: 8px;
+    }
+
+    .spin {
+        animation: spin 1.5s linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<script>
+    // Tab switching
+    document.querySelectorAll('.scan-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.scan-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.scan-mode-panel').forEach(p => p.style.display = 'none');
+            document.getElementById('panel-' + tab.dataset.mode).style.display = 'block';
+            lucide.createIcons();
+        });
+    });
+
+    // Batch mode toggle
+    document.querySelectorAll('input[name="batch-mode"]').forEach(r => {
+        r.addEventListener('change', () => {
+            const mode = r.value;
+            document.querySelectorAll('.batch-mode-select .filter-chip').forEach(c => c.classList.remove('active'));
+            r.parentElement.classList.add('active');
+            if (mode === 'name') {
+                document.getElementById('batch-label').textContent = 'Paste Names (one per line)';
+                document.getElementById('batch-input').placeholder = 'John Smith\nJane Doe\nAlex Johnson';
+                document.getElementById('batch-hint').textContent = 'Paste full names — each will be auto-parsed into username variants and scanned.';
+            } else {
+                document.getElementById('batch-label').textContent = 'Paste Usernames (one per line)';
+                document.getElementById('batch-input').placeholder = 'johndoe\njanesmith\nalexj123';
+                document.getElementById('batch-hint').textContent = 'Paste exact usernames — each will be scanned across all platforms.';
+            }
+        });
+    });
+
+    // Parse full name
+    function parseName() {
+        const name = document.getElementById('fullname-input').value.trim();
+        if (!name) return;
+        fetch('/api/parse-names', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ names: name })
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) { alert(data.error); return; }
+                document.getElementById('name-parsed-output').style.display = 'block';
+                const parsed = data.parsed[0] || {};
+                document.getElementById('name-info').innerHTML = `
+            <div class="pi-item">First: <span class="pi-val">${parsed.first || '—'}</span></div>
+            <div class="pi-item">Middle: <span class="pi-val">${parsed.middle || '—'}</span></div>
+            <div class="pi-item">Last: <span class="pi-val">${parsed.last || '—'}</span></div>
+            <div class="pi-item">Variants: <span class="pi-val">${data.total_usernames}</span></div>
+        `;
+                document.getElementById('username-count-badge').textContent = data.total_usernames + ' variants';
+                const container = document.getElementById('generated-usernames');
+                container.innerHTML = data.usernames.map(u => `<span class="username-chip">${u}</span>`).join('');
+                window._parsedUsernames = data.usernames;
+                lucide.createIcons();
+            });
+    }
+
+    // Scan all parsed name variants
+    function scanAllParsedUsernames() {
+        if (!window._parsedUsernames || !window._parsedUsernames.length) return;
+        const btn = document.getElementById('scan-all-names-btn');
+        btn.disabled = true;
+        btn.querySelector('.btn-text').textContent = 'SCANNING...';
+        // Scan first username (primary)
+        startScan(window._parsedUsernames[0]);
+    }
+
+    // Batch scan
+    function startBatchScan() {
+        const text = document.getElementById('batch-input').value.trim();
+        if (!text) return;
+        const mode = document.querySelector('input[name="batch-mode"]:checked').value;
+        const btn = document.getElementById('batch-scan-btn');
+        btn.disabled = true;
+        btn.querySelector('.btn-text').textContent = 'SCANNING...';
+        btn.querySelector('.btn-loader').style.display = 'inline-block';
+        document.getElementById('batch-progress').style.display = 'block';
+
+        fetch('/api/scan/batch', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ names: text, mode: mode })
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) { alert(data.error); btn.disabled = false; return; }
+                document.getElementById('batch-total').textContent = data.total;
+            });
+    }
+
+    // Batch socket events
+    if (typeof socket !== 'undefined') {
+        socket.on('batch_progress', (data) => {
+            document.getElementById('batch-current').textContent = data.current_username;
+            document.getElementById('batch-idx').textContent = data.index;
+            const pct = Math.round((data.index / data.total) * 100);
+            document.getElementById('batch-bar').style.width = pct + '%';
+        });
+        socket.on('batch_complete', (data) => {
+            const btn = document.getElementById('batch-scan-btn');
+            btn.disabled = false;
+            btn.querySelector('.btn-text').textContent = 'LAUNCH BATCH SCAN';
+            btn.querySelector('.btn-loader').style.display = 'none';
+            document.getElementById('batch-bar').style.width = '100%';
+            if (data.results && data.results.length > 0) {
+                window.location.href = '/results/' + data.results[0].scan_id;
+            }
+        });
+    }
+
+    setTimeout(() => lucide.createIcons(), 50);
+</script>
+{% endblock %}

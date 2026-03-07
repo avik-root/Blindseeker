@@ -1,0 +1,8 @@
+# Blindseeker Exports
+# This directory stores exported reports
+*.json
+*.csv
+*.pdf
+*.xml
+*.html
+*.xlsx
