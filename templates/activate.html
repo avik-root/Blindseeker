@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate — Blindseeker v1.0.0</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .activate-container {
+            max-width: 520px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .activate-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 40px 36px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 60px rgba(0, 255, 136, 0.05), 0 0 120px rgba(0, 136, 255, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activate-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .activate-logo {
+            text-align: center;
+            margin-bottom: 28px;
+            position: relative;
+        }
+
+        .activate-logo img {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            filter: drop-shadow(0 0 16px rgba(0, 255, 136, 0.4));
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        .activate-logo h1 {
+            font-family: var(--font-mono);
+            font-size: 22px;
+            letter-spacing: 4px;
+            color: var(--accent-primary);
+            margin-top: 12px;
+        }
+
+        .activate-logo p {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .key-input-group {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .key-segment {
+            flex: 1;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 14px 4px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.25s;
+        }
+
+        .key-segment:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .key-sep {
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .device-info {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+
+        .device-info h4 {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .device-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            padding: 3px 0;
+            color: var(--text-secondary);
+        }
+
+        .device-row .val {
+            font-family: var(--font-mono);
+            color: var(--accent-info);
+            font-size: 11px;
+        }
+
+        .status-msg {
+            text-align: center;
+            font-size: 13px;
+            min-height: 20px;
+            margin-bottom: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .status-msg.error {
+            color: var(--accent-danger);
+        }
+
+        .status-msg.success {
+            color: var(--accent-primary);
+        }
+
+        .status-msg.loading {
+            color: var(--accent-info);
+        }
+
+        .activate-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .shield-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: var(--accent-primary);
+            font-size: 11px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="activate-container">
+        <div class="activate-card">
+            <div class="activate-logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blindseeker">
+                <h1>BLINDSEEKER</h1>
+                <p>v1.0.0 — Shadow Protocol</p>
+            </div>
+
+            <div class="shield-icon">
+                <i data-lucide="shield-check" style="width:14px;height:14px;"></i>
+                FuzzyShield Product Activation
+            </div>
+
+            <form id="activate-form" onsubmit="activateKey(event)">
+                <div class="key-input-group">
+                    <input type="text" class="key-segment" id="seg1" maxlength="5" placeholder="XXXXX"
+                        autocomplete="off" autofocus>
+                    <div class="key-sep">–</div>
+                    <input type="text" class="key-segment" id="seg2" maxlength="5" placeholder="XXXXX"
+                        autocomplete="off">
+                    <div class="key-sep">–</div>
+                    <input type="text" class="key-segment" id="seg3" maxlength="5" placeholder="XXXXX"
+                        autocomplete="off">
+                    <div class="key-sep">–</div>
+                    <input type="text" class="key-segment" id="seg4" maxlength="5" placeholder="XXXXX"
+                        autocomplete="off">
+                    <div class="key-sep">–</div>
+                    <input type="text" class="key-segment" id="seg5" maxlength="5" placeholder="XXXXX"
+                        autocomplete="off">
+                </div>
+
+                <div class="status-msg" id="status-msg"></div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-glow btn-full" id="activate-btn">
+                    <i data-lucide="key"
+                        style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                    <span class="btn-text">ACTIVATE LICENSE</span>
+                    <span class="btn-loader" style="display:none;"></span>
+                </button>
+            </form>
+
+            <div class="device-info">
+                <h4><i data-lucide="cpu" style="width:12px;height:12px;"></i> Device Fingerprint</h4>
+                <div class="device-row"><span>Hostname</span><span class="val">{{ device_info.hostname }}</span></div>
+                <div class="device-row"><span>User</span><span class="val">{{ device_info.username }}</span></div>
+                <div class="device-row"><span>OS</span><span class="val">{{ device_info.os }}</span></div>
+                <div class="device-row"><span>Architecture</span><span class="val">{{ device_info.arch }}</span></div>
+                <div class="device-row"><span>Fingerprint</span><span class="val">{{ device_info.device_fingerprint
+                        }}</span></div>
+            </div>
+
+            <div class="activate-footer">
+                <i data-lucide="lock" style="width:10px;height:10px;display:inline;vertical-align:middle;"></i>
+                FOR AUTHORIZED USE ONLY — Developed by <strong
+                    style="color:var(--accent-primary);font-family:var(--font-mono);">MintFire</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-advance segments
+        document.querySelectorAll('.key-segment').forEach((seg, idx, all) => {
+            seg.addEventListener('input', (e) => {
+                e.target.value = e.target.value.toUpperCase().replace(/[^A-Z2-9]/g, '');
+                if (e.target.value.length === 5 && idx < 4) {
+                    all[idx + 1].focus();
+                }
+            });
+            seg.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && idx > 0) {
+                    all[idx - 1].focus();
+                }
+            });
+            // Handle paste of full key
+            seg.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pasted = (e.clipboardData.getData('text') || '').toUpperCase().replace(/[^A-Z2-9]/g, '');
+                if (pasted.length >= 25) {
+                    for (let i = 0; i < 5; i++) {
+                        all[i].value = pasted.substring(i * 5, i * 5 + 5);
+                    }
+                }
+            });
+        });
+
+        function activateKey(e) {
+            e.preventDefault();
+            const segments = ['seg1', 'seg2', 'seg3', 'seg4', 'seg5'].map(id => document.getElementById(id).value.trim().toUpperCase());
+            if (segments.some(s => s.length !== 5)) {
+                showStatus('All 5 segments must be filled (5 characters each)', 'error');
+                return;
+            }
+            const key = segments.join('-');
+            const btn = document.getElementById('activate-btn');
+            btn.disabled = true;
+            btn.querySelector('.btn-text').textContent = 'VERIFYING...';
+            btn.querySelector('.btn-loader').style.display = 'inline-block';
+            showStatus('<span class="spinner"></span> Verifying key against FuzzyShield...', 'loading');
+
+            fetch('/api/activate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key: key })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    btn.disabled = false;
+                    btn.querySelector('.btn-text').textContent = 'ACTIVATE LICENSE';
+                    btn.querySelector('.btn-loader').style.display = 'none';
+                    if (data.success) {
+                        showStatus('✓ ' + data.message, 'success');
+                        setTimeout(() => { window.location.href = '/'; }, 1500);
+                    } else {
+                        showStatus(data.message, 'error');
+                    }
+                })
+                .catch(err => {
+                    btn.disabled = false;
+                    btn.querySelector('.btn-text').textContent = 'ACTIVATE LICENSE';
+                    btn.querySelector('.btn-loader').style.display = 'none';
+                    showStatus('Network error — please try again', 'error');
+                });
+        }
+
+        function showStatus(msg, type) {
+            const el = document.getElementById('status-msg');
+            el.innerHTML = msg;
+            el.className = 'status-msg ' + type;
+        }
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

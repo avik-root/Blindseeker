@@ -55,6 +55,13 @@
                 </a>
             </li>
             <li>
+                <a href="/agent" class="nav-link {% if request.endpoint == 'agent_page' %}active{% endif %}"
+                    id="nav-agent">
+                    <i data-lucide="brain" class="nav-icon-svg"></i>
+                    <span>Agent</span>
+                </a>
+            </li>
+            <li>
                 <a href="/settings" class="nav-link {% if request.endpoint == 'settings_page' %}active{% endif %}"
                     id="nav-settings">
                     <i data-lucide="settings" class="nav-icon-svg"></i>

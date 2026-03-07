@@ -294,5 +294,105 @@ def web(host, port, debug):
     socketio.run(app, host=host, port=port, debug=debug, allow_unsafe_werkzeug=True)
 
 
+@cli.command()
+@click.argument('key', required=False)
+def activate(key):
+    """Activate Blindseeker with a product key."""
+    from core.fuzzy_shield import FuzzyShield
+    print_banner()
+    
+    shield = FuzzyShield()
+    
+    # Check if already activated
+    if shield.is_activated():
+        info = shield.get_activation_info()
+        console.print(Panel(
+            f"[green]✓ License already activated[/green]\n\n"
+            f"[dim]Activated: {info['activation_date']}\n"
+            f"Device: {info['hostname']} ({info['os']})\n"
+            f"Fingerprint: {info['device_fingerprint']}[/dim]",
+            title="[bold green]LICENSE STATUS[/bold green]",
+            border_style="green"
+        ))
+        return
+    
+    if not key:
+        console.print(Panel(
+            "[yellow]Product key required for activation.\n\n"
+            "Format: XXXXX-XXXXX-XXXXX-XXXXX-XXXXX[/yellow]\n\n"
+            "[dim]Contact MintFire for an authorized product key.[/dim]",
+            title="[bold]ACTIVATION REQUIRED[/bold]",
+            border_style="yellow"
+        ))
+        key = click.prompt("Enter product key")
+    
+    key = key.strip().upper()
+    
+    console.print()
+    console.print("  [cyan]►[/cyan] Validating key format...")
+    
+    if not shield.validate_key_format(key):
+        console.print("  [red]✗[/red] Invalid key format")
+        return
+    
+    console.print("  [green]✓[/green] Format valid")
+    console.print("  [cyan]►[/cyan] Verifying against FuzzyShield...")
+    
+    result = shield.activate(key)
+    
+    if result['success']:
+        console.print(f"  [green]✓[/green] {result['message']}")
+        console.print()
+        console.print(Panel(
+            f"[bold green]Activation Successful[/bold green]\n\n"
+            f"Key: {key}\n"
+            f"Device: {result['device_fingerprint']}",
+            title="[bold]LICENSED[/bold]",
+            border_style="green"
+        ))
+    else:
+        console.print(f"  [red]✗[/red] {result['message']}")
+
+
+@cli.command()
+@click.option('--apply', is_flag=True, help='Apply available update')
+def update(apply):
+    """Check for and apply updates."""
+    from core.updater import BlindSeekerUpdater
+    print_banner()
+    
+    updater = BlindSeekerUpdater()
+    
+    console.print("  [cyan]►[/cyan] Checking for updates...")
+    info = updater.get_update_info()
+    
+    console.print(f"  Current version: [bold]v{info['current_version']}[/bold]")
+    
+    if info.get('error'):
+        console.print(f"  [yellow]⚠[/yellow] {info['error']}")
+        return
+    
+    if info['update_available']:
+        console.print(f"  [green]✓[/green] Update available: [bold green]v{info['latest_version']}[/bold green]")
+        if info['changelog']:
+            console.print(f"\n  Changelog: {info['changelog']}")
+        
+        if apply:
+            console.print()
+            console.print("  [cyan]►[/cyan] Applying update...")
+            result = updater.apply_update()
+            if result['success']:
+                console.print(f"  [green]✓[/green] {result['message']}")
+                console.print("  [yellow]►[/yellow] Please restart the application.")
+            else:
+                console.print(f"  [red]✗[/red] {result['message']}")
+        else:
+            console.print("\n  Run [bold]python cli.py update --apply[/bold] to install.")
+    else:
+        console.print(f"  [green]✓[/green] You are running the latest version.")
+    
+    console.print()
+
+
 if __name__ == '__main__':
     cli()

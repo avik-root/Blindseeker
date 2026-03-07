@@ -1,15 +1,78 @@
 {% extends "base.html" %}
 {% block title %}Settings — Blindseeker{% endblock %}
 {% block page_title %}
-<span class="page-icon">⚙</span> Configuration
+<i data-lucide="settings"
+    style="width:22px;height:22px;display:inline;vertical-align:middle;margin-right:8px;stroke:var(--accent-primary);"></i>
+Configuration
 {% endblock %}
 
 {% block content %}
 <div class="settings-page">
+    <!-- License Status -->
+    <div class="card">
+        <div class="card-header">
+            <h2><i data-lucide="shield-check"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;stroke:var(--accent-primary);"></i>
+                License Status</h2>
+            <span class="badge badge-success">ACTIVATED</span>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Device Fingerprint</label>
+                    <div class="status-value" id="license-fp" style="font-family:var(--font-mono);font-size:12px;">
+                        Loading...</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Activation Date</label>
+                    <div class="status-value" id="license-date">Loading...</div>
+                </div>
+            </div>
+            <small class="form-hint">License is device-bound via FuzzyShield encryption. Cannot be transferred.</small>
+        </div>
+    </div>
+
+    <!-- Update System -->
+    <div class="card">
+        <div class="card-header">
+            <h2><i data-lucide="download"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;stroke:var(--accent-info);"></i>
+                Software Update</h2>
+            <span class="badge" id="update-badge" style="display:none;"></span>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Current Version</label>
+                    <div class="status-value" id="current-version">v1.0.0</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Latest Version</label>
+                    <div class="status-value" id="latest-version">Checking...</div>
+                </div>
+            </div>
+            <div class="form-row" style="margin-top:12px;">
+                <button class="btn btn-secondary" id="check-update-btn" onclick="checkForUpdates()">
+                    <i data-lucide="refresh-cw"
+                        style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                    Check for Updates
+                </button>
+                <button class="btn btn-primary" id="apply-update-btn" onclick="applyUpdate()" style="display:none;">
+                    <i data-lucide="download"
+                        style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:6px;"></i>
+                    Apply Update
+                </button>
+            </div>
+            <div id="update-status" style="margin-top:8px;font-size:12px;color:var(--text-muted);"></div>
+        </div>
+    </div>
+
     <!-- Tor Configuration -->
     <div class="card">
         <div class="card-header">
-            <h2><span class="header-icon">◉</span> Tor Network</h2>
+            <h2><i data-lucide="circle"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;stroke:#a855f7;"></i>
+                Tor Network</h2>
             <span class="badge {{ 'badge-success' if tor_status.enabled else 'badge-danger' }}">
                 {{ 'ENABLED' if tor_status.enabled else 'DISABLED' }}
             </span>
@@ -39,7 +102,9 @@
     <!-- Proxy Configuration -->
     <div class="card">
         <div class="card-header">
-            <h2><span class="header-icon">⟐</span> Proxy Manager</h2>
+            <h2><i data-lucide="globe"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;stroke:var(--accent-warning);"></i>
+                Proxy Manager</h2>
             <span class="badge {{ 'badge-success' if proxy_status.enabled else 'badge-danger' }}">
                 {{ proxy_status.healthy }} healthy / {{ proxy_status.total }} total
             </span>
@@ -58,7 +123,9 @@
     <!-- Scan Configuration -->
     <div class="card">
         <div class="card-header">
-            <h2><span class="header-icon">⚙</span> Scan Settings</h2>
+            <h2><i data-lucide="sliders"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;stroke:var(--accent-primary);"></i>
+                Scan Settings</h2>
         </div>
         <div class="card-body">
             <div class="form-row">
@@ -123,5 +190,68 @@
             .then(r => r.json())
             .then(data => alert(data.status || data.error));
     });
+
+    // Check for updates
+    function checkForUpdates() {
+        const btn = document.getElementById('check-update-btn');
+        btn.disabled = true;
+        btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid transparent;border-top-color:currentColor;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:6px;"></span> Checking...';
+        document.getElementById('update-status').textContent = 'Contacting update server...';
+
+        fetch('/api/update/check')
+            .then(r => r.json())
+            .then(data => {
+                btn.disabled = false;
+                btn.innerHTML = '<i data-lucide="refresh-cw" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:6px;"></i> Check for Updates';
+                lucide.createIcons();
+
+                document.getElementById('current-version').textContent = 'v' + data.current_version;
+                document.getElementById('latest-version').textContent = 'v' + data.latest_version;
+
+                const badge = document.getElementById('update-badge');
+                if (data.update_available) {
+                    badge.textContent = 'UPDATE AVAILABLE';
+                    badge.className = 'badge badge-success';
+                    badge.style.display = 'inline-flex';
+                    document.getElementById('apply-update-btn').style.display = 'inline-flex';
+                    document.getElementById('update-status').innerHTML = '<span style="color:var(--accent-primary);">✓ New version available!</span>';
+                } else {
+                    badge.textContent = 'UP TO DATE';
+                    badge.className = 'badge';
+                    badge.style.display = 'inline-flex';
+                    document.getElementById('update-status').innerHTML = '<span style="color:var(--accent-primary);">✓ Running latest version</span>';
+                }
+
+                if (data.error) {
+                    document.getElementById('update-status').innerHTML = '<span style="color:var(--accent-warning);">' + data.error + '</span>';
+                }
+            })
+            .catch(err => {
+                btn.disabled = false;
+                document.getElementById('update-status').innerHTML = '<span style="color:var(--accent-danger);">Network error</span>';
+            });
+    }
+
+    function applyUpdate() {
+        if (!confirm('Apply update? The application will need to restart.')) return;
+        const btn = document.getElementById('apply-update-btn');
+        btn.disabled = true;
+        btn.textContent = 'Updating...';
+        document.getElementById('update-status').textContent = 'Applying update...';
+
+        fetch('/api/update/apply', { method: 'POST' })
+            .then(r => r.json())
+            .then(data => {
+                btn.disabled = false;
+                if (data.success) {
+                    document.getElementById('update-status').innerHTML = '<span style="color:var(--accent-primary);">✓ ' + data.message + ' — Please restart.</span>';
+                } else {
+                    document.getElementById('update-status').innerHTML = '<span style="color:var(--accent-danger);">' + data.message + '</span>';
+                }
+            });
+    }
+
+    // Auto-check on page load
+    checkForUpdates();
 </script>
 {% endblock %}

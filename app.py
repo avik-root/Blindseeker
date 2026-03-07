@@ -25,6 +25,9 @@ from config import get_config, Config
 from core.engine import BlindSeekerEngine
 from core.exporter import Exporter
 from core.platforms import get_platform_count, get_categories
+from core.fuzzy_shield import FuzzyShield
+from core.osint_agent import OSINTAgent
+from core.suggestions import ProfileSuggestionEngine
 
 # ──────────────────────────────────────────────────────────────
 # App Initialization
@@ -58,6 +61,19 @@ logger = logging.getLogger('blindseeker.app')
 
 # In-memory store for scan results (accessible to routes)
 scan_store = {}
+
+# FuzzyShield license system
+shield = FuzzyShield()
+
+
+@app.before_request
+def check_license():
+    """Gate all routes behind license activation."""
+    allowed_paths = ['/activate', '/api/activate', '/static/']
+    if any(request.path.startswith(p) for p in allowed_paths):
+        return None
+    if not shield.is_activated():
+        return redirect(url_for('activate_page'))
 
 
 def save_scan_json(scan_data):
@@ -97,6 +113,32 @@ BANNER = r"""
 /_____/_/_/_/ /_/\__,_/____/\___/\___/_/|_|\___/_/
                                            v1.0.0
 """
+
+# ──────────────────────────────────────────────────────────────
+# Routes - Activation
+# ──────────────────────────────────────────────────────────────
+
+@app.route('/activate')
+def activate_page():
+    """Product key activation page."""
+    if shield.is_activated():
+        return redirect(url_for('dashboard'))
+    device_info = shield.get_activation_info()
+    return render_template('activate.html', device_info=device_info)
+
+
+@app.route('/api/activate', methods=['POST'])
+def api_activate():
+    """Verify and activate a product key."""
+    data = request.get_json() or {}
+    key = data.get('key', '').strip().upper()
+    
+    if not key:
+        return jsonify({"success": False, "message": "No product key provided"})
+    
+    result = shield.activate(key)
+    return jsonify(result)
+
 
 # ──────────────────────────────────────────────────────────────
 # Routes - Pages
@@ -502,6 +544,76 @@ def api_update_settings():
         )
     
     return jsonify({'status': 'Settings updated'})
+
+
+# ──────────────────────────────────────────────────────────────
+# Routes - OSINT Agent
+# ──────────────────────────────────────────────────────────────
+
+osint_agent = OSINTAgent()
+suggestion_engine = ProfileSuggestionEngine()
+
+
+@app.route('/agent')
+def agent_page():
+    """OSINT Intelligence Agent page."""
+    return render_template('agent.html')
+
+
+@app.route('/api/agent/analyze', methods=['POST'])
+def api_agent_analyze():
+    """Run OSINT agent analysis on subject data."""
+    data = request.get_json() or {}
+    if not data:
+        return jsonify({"error": "No subject data provided"})
+    
+    try:
+        result = osint_agent.analyze_subject(data)
+        return jsonify(result)
+    except Exception as e:
+        logger.error(f"Agent analysis error: {e}")
+        return jsonify({"error": f"Analysis failed: {str(e)}"}), 500
+
+
+@app.route('/api/agent/suggest', methods=['POST'])
+def api_agent_suggest():
+    """Get smart suggestions for a found username."""
+    data = request.get_json() or {}
+    username = data.get('username', '')
+    profiles = data.get('profiles', [])
+    subject = data.get('subject_data', {})
+    
+    if not username:
+        return jsonify({"error": "No username provided"})
+    
+    try:
+        suggestions = suggestion_engine.generate_suggestions(username, profiles, subject)
+        return jsonify(suggestions)
+    except Exception as e:
+        logger.error(f"Suggestion error: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+# ──────────────────────────────────────────────────────────────
+# Routes - Update System
+# ──────────────────────────────────────────────────────────────
+
+from core.updater import BlindSeekerUpdater
+updater = BlindSeekerUpdater()
+
+
+@app.route('/api/update/check', methods=['GET'])
+def api_check_update():
+    """Check for available updates."""
+    info = updater.get_update_info()
+    return jsonify(info)
+
+
+@app.route('/api/update/apply', methods=['POST'])
+def api_apply_update():
+    """Apply available update."""
+    result = updater.apply_update()
+    return jsonify(result)
 
 
 # ──────────────────────────────────────────────────────────────
