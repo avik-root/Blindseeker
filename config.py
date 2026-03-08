@@ -20,7 +20,7 @@ class Config:
     # Flask
     SECRET_KEY = os.getenv('SECRET_KEY', 'blindseeker-dev-key-change-in-production')
     FLASK_HOST = os.getenv('FLASK_HOST', '127.0.0.1')
-    FLASK_PORT = int(os.getenv('FLASK_PORT', 5000))
+    FLASK_PORT = int(os.getenv('FLASK_PORT', 5050))
     
     # Tor
     TOR_ENABLED = os.getenv('TOR_ENABLED', 'false').lower() == 'true'

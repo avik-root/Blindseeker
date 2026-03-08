@@ -337,7 +337,7 @@ New Scan
 </style>
 
 <script>
-    // Tab switching
+    // ─── Tab Switching ───
     document.querySelectorAll('.scan-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.scan-tab').forEach(t => t.classList.remove('active'));
@@ -348,12 +348,17 @@ New Scan
         });
     });
 
-    // Batch mode toggle
-    document.querySelectorAll('input[name="batch-mode"]').forEach(r => {
-        r.addEventListener('change', () => {
-            const mode = r.value;
+    // ─── Batch Mode Toggle (fixed) ───
+    document.querySelectorAll('.batch-mode-select .filter-chip').forEach(chip => {
+        chip.addEventListener('click', function () {
+            // Toggle active class
             document.querySelectorAll('.batch-mode-select .filter-chip').forEach(c => c.classList.remove('active'));
-            r.parentElement.classList.add('active');
+            this.classList.add('active');
+            // Check the radio inside
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+            // Update UI
+            const mode = radio ? radio.value : 'name';
             if (mode === 'name') {
                 document.getElementById('batch-label').textContent = 'Paste Names (one per line)';
                 document.getElementById('batch-input').placeholder = 'John Smith\nJane Doe\nAlex Johnson';
@@ -366,7 +371,7 @@ New Scan
         });
     });
 
-    // Parse full name
+    // ─── Parse Full Name ───
     function parseName() {
         const name = document.getElementById('fullname-input').value.trim();
         if (!name) return;
@@ -394,56 +399,156 @@ New Scan
             });
     }
 
-    // Scan all parsed name variants
-    function scanAllParsedUsernames() {
+    // ─── Scan All Parsed Name Variants (sequential) ───
+    async function scanAllParsedUsernames() {
         if (!window._parsedUsernames || !window._parsedUsernames.length) return;
+        const usernames = window._parsedUsernames;
         const btn = document.getElementById('scan-all-names-btn');
         btn.disabled = true;
         btn.querySelector('.btn-text').textContent = 'SCANNING...';
-        // Scan first username (primary)
-        startScan(window._parsedUsernames[0]);
+        await runBatchScanSequence(usernames);
+        btn.disabled = false;
+        btn.querySelector('.btn-text').textContent = 'SCAN ALL VARIANTS';
     }
 
-    // Batch scan
-    function startBatchScan() {
+    // ─── Batch Scan ───
+    async function startBatchScan() {
         const text = document.getElementById('batch-input').value.trim();
-        if (!text) return;
-        const mode = document.querySelector('input[name="batch-mode"]:checked').value;
+        if (!text) { alert('Please enter at least one username or name.'); return; }
+
+        // Determine mode from checked radio
+        const checkedRadio = document.querySelector('input[name="batch-mode"]:checked');
+        const mode = checkedRadio ? checkedRadio.value : 'name';
+
         const btn = document.getElementById('batch-scan-btn');
         btn.disabled = true;
-        btn.querySelector('.btn-text').textContent = 'SCANNING...';
+        btn.querySelector('.btn-text').textContent = 'PREPARING...';
         btn.querySelector('.btn-loader').style.display = 'inline-block';
-        document.getElementById('batch-progress').style.display = 'block';
 
-        fetch('/api/scan/batch', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ names: text, mode: mode })
-        })
-            .then(r => r.json())
-            .then(data => {
-                if (data.error) { alert(data.error); btn.disabled = false; return; }
-                document.getElementById('batch-total').textContent = data.total;
-            });
+        let usernames = [];
+        if (mode === 'username') {
+            // Direct username list — split by newlines, semicolons, etc.
+            usernames = text.split(/[\n;|,]+/).map(u => u.trim()).filter(u => u.length >= 2);
+        } else {
+            // Full names — parse via API first
+            try {
+                const resp = await fetch('/api/parse-names', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ names: text })
+                });
+                const data = await resp.json();
+                if (data.error) { alert(data.error); resetBatchBtn(); return; }
+                usernames = data.usernames || [];
+            } catch (e) {
+                alert('Failed to parse names: ' + e.message);
+                resetBatchBtn();
+                return;
+            }
+        }
+
+        if (usernames.length === 0) {
+            alert('No valid usernames to scan.');
+            resetBatchBtn();
+            return;
+        }
+
+        btn.querySelector('.btn-text').textContent = `SCANNING 0 / ${usernames.length}...`;
+        document.getElementById('batch-progress').style.display = 'block';
+        document.getElementById('batch-total').textContent = usernames.length;
+
+        await runBatchScanSequence(usernames);
+        resetBatchBtn();
     }
 
-    // Batch socket events
-    if (typeof socket !== 'undefined') {
-        socket.on('batch_progress', (data) => {
-            document.getElementById('batch-current').textContent = data.current_username;
-            document.getElementById('batch-idx').textContent = data.index;
-            const pct = Math.round((data.index / data.total) * 100);
-            document.getElementById('batch-bar').style.width = pct + '%';
-        });
-        socket.on('batch_complete', (data) => {
+    function resetBatchBtn() {
+        const btn = document.getElementById('batch-scan-btn');
+        btn.disabled = false;
+        btn.querySelector('.btn-text').textContent = 'LAUNCH BATCH SCAN';
+        btn.querySelector('.btn-loader').style.display = 'none';
+    }
+
+    // ─── Core: Sequential Batch Executor ───
+    async function runBatchScanSequence(usernames) {
+        const progressPanel = document.getElementById('batch-progress');
+        if (progressPanel) progressPanel.style.display = 'block';
+
+        const batchTotal = document.getElementById('batch-total');
+        const batchIdx = document.getElementById('batch-idx');
+        const batchCurrent = document.getElementById('batch-current');
+        const batchBar = document.getElementById('batch-bar');
+
+        if (batchTotal) batchTotal.textContent = usernames.length;
+
+        const allScanIds = [];
+
+        for (let i = 0; i < usernames.length; i++) {
+            const username = usernames[i];
+
+            // Update batch progress UI
+            if (batchIdx) batchIdx.textContent = i + 1;
+            if (batchCurrent) batchCurrent.textContent = username;
+            if (batchBar) batchBar.style.width = Math.round(((i + 1) / usernames.length) * 100) + '%';
+
+            // Update batch scan button text
             const btn = document.getElementById('batch-scan-btn');
-            btn.disabled = false;
-            btn.querySelector('.btn-text').textContent = 'LAUNCH BATCH SCAN';
-            btn.querySelector('.btn-loader').style.display = 'none';
-            document.getElementById('batch-bar').style.width = '100%';
-            if (data.results && data.results.length > 0) {
-                window.location.href = '/results/' + data.results[0].scan_id;
+            if (btn) {
+                const txt = btn.querySelector('.btn-text');
+                if (txt) txt.textContent = `SCANNING ${i + 1} / ${usernames.length}...`;
             }
+
+            try {
+                // POST scan and wait for it to complete via socket
+                const scanId = await scanSingleUsername(username);
+                if (scanId) allScanIds.push(scanId);
+            } catch (e) {
+                console.error(`Batch scan error for ${username}:`, e);
+            }
+        }
+
+        // All done — redirect to last scan result or history
+        if (batchBar) batchBar.style.width = '100%';
+        if (batchCurrent) batchCurrent.textContent = 'Complete!';
+
+        if (allScanIds.length > 0) {
+            // Show completion panel
+            const scp = document.getElementById('scan-complete-panel');
+            if (scp) {
+                scp.style.display = 'block';
+                document.getElementById('sc-found').textContent = allScanIds.length + ' scans';
+                document.getElementById('sc-duration').textContent = 'Batch';
+                document.getElementById('sc-total').textContent = usernames.length;
+                document.getElementById('sc-view-results').href = '/results/' + allScanIds[allScanIds.length - 1];
+            }
+        }
+    }
+
+    // ─── Single Username Scan (returns promise with scan_id) ───
+    function scanSingleUsername(username) {
+        return new Promise((resolve, reject) => {
+            fetch('/api/scan', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: username, timeout: 10, max_workers: 50 })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.error) { reject(data.error); return; }
+
+                    // Listen for scan_complete event for this scan
+                    const handler = (evt) => {
+                        socket.off('scan_complete', handler);
+                        resolve(evt.scan_id);
+                    };
+                    socket.on('scan_complete', handler);
+
+                    // Show progress for this username
+                    showScanProgress(username);
+                })
+                .catch(reject);
+
+            // Safety timeout — if scan takes too long, move on
+            setTimeout(() => resolve(null), 120000);
         });
     }
 
