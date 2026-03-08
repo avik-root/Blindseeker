@@ -57,7 +57,7 @@ for _i, _v in enumerate(_FUZZY_SBOX):
     _FUZZY_SBOX_INV[_v] = _i
 
 # Key alphabet for product key generation
-_KEY_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"  # No I,O,0,1 to avoid ambiguity
+_KEY_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"  # All uppercase alphanumeric
 
 
 class FuzzyShield:
