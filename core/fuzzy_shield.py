@@ -421,6 +421,17 @@ class FuzzyShield:
             result["error"] = f"License validation error: {str(e)}"
             return result
     
+    def delete_license(self) -> bool:
+        """Delete the local license file to force re-activation."""
+        license_path = self._get_license_path()
+        try:
+            if license_path.exists():
+                license_path.unlink()
+            return True
+        except Exception as e:
+            logger.error(f"Failed to delete license: {e}")
+            return False
+
     # ──────────────────────────────────────────────
     # GitHub Verification
     # ──────────────────────────────────────────────

@@ -149,6 +149,28 @@ Configuration
             <button class="btn btn-primary" id="save-settings">Save Settings</button>
         </div>
     </div>
+
+    <!-- License Configuration -->
+    <div class="card" style="border-color: rgba(255, 60, 60, 0.3);">
+        <div class="card-header">
+            <h2><i data-lucide="key"
+                    style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;stroke:var(--accent-danger);"></i>
+                License Activation</h2>
+        </div>
+        <div class="card-body">
+            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+                Resetting your activation key will delete your local license and require you to enter a valid product
+                key to use Blindseeker again.
+            </p>
+            <button class="btn btn-primary" id="reset-key-btn"
+                style="background: rgba(255, 60, 60, 0.1); border-color: rgba(255, 60, 60, 0.5); color: #ff6b6b;">
+                <i data-lucide="trash-2"
+                    style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px;"></i>
+                Reset Activation Key
+            </button>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -250,6 +272,34 @@ Configuration
                 }
             });
     }
+
+    // Reset Activation Key
+    document.getElementById('reset-key-btn').addEventListener('click', function () {
+        if (!confirm('Are you sure you want to reset your product key? You will need a valid key to use the tool again.')) return;
+
+        const btn = this;
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid transparent;border-top-color:currentColor;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:6px;"></span> Resetting...';
+
+        fetch('/api/settings/reset-key', { method: 'POST' })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    alert('License key deleted successfully. You will now be redirected to the activation page.');
+                    window.location.href = '/activate';
+                } else {
+                    alert('Failed to reset key: ' + (data.error || 'Unknown error'));
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            })
+            .catch(err => {
+                alert('Network error');
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            });
+    });
 
     // Auto-check on page load
     checkForUpdates();

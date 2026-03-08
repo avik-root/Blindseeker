@@ -529,6 +529,14 @@ def api_batch_scan():
         'total': len(usernames)
     })
 
+@app.route('/api/settings/reset-key', methods=['POST'])
+def reset_activation_key():
+    """Delete the local product license to force reactivation."""
+    shield = FuzzyShield()
+    if shield.delete_license():
+        return jsonify({"success": True, "message": "License key reset successfully"}), 200
+    return jsonify({"success": False, "error": "Failed to reset license key"}), 500
+
 
 @app.route('/api/settings', methods=['POST'])
 def api_update_settings():
