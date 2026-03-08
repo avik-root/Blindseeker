@@ -272,7 +272,7 @@
         // Auto-advance segments
         document.querySelectorAll('.key-segment').forEach((seg, idx, all) => {
             seg.addEventListener('input', (e) => {
-                e.target.value = e.target.value.toUpperCase().replace(/[^A-Z2-9]/g, '');
+                e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
                 if (e.target.value.length === 5 && idx < 4) {
                     all[idx + 1].focus();
                 }
@@ -285,7 +285,7 @@
             // Handle paste of full key
             seg.addEventListener('paste', (e) => {
                 e.preventDefault();
-                const pasted = (e.clipboardData.getData('text') || '').toUpperCase().replace(/[^A-Z2-9]/g, '');
+                const pasted = (e.clipboardData.getData('text') || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
                 if (pasted.length >= 25) {
                     for (let i = 0; i < 5; i++) {
                         all[i].value = pasted.substring(i * 5, i * 5 + 5);
