@@ -78,7 +78,7 @@ class FuzzyShield:
     _LICENSE_DIR = Path.home()
     
     # GitHub raw URL for key verification (placeholder — user configures)
-    GITHUB_KEYS_URL = "https://raw.githubusercontent.com/MintFireDev/Blindseeker/main/.keys/valid_keys.dat"
+    GITHUB_KEYS_URL = "https://raw.githubusercontent.com/avik-root/Blindseeker/main/.keys/valid_keys.dat"
     
     def __init__(self):
         self._device_fp = None

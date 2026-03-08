@@ -2,7 +2,7 @@
 Blindseeker v1.0.0 - Name Parser & Username Generator
 =======================================================
 Parses full names into first/middle/last and generates
-all plausible username variants for enumeration.
+ALL plausible username combinations for maximum coverage.
 
 Developed by MintFire
 """
@@ -13,7 +13,7 @@ import itertools
 
 class NameParser:
     """
-    Parse full names and generate username variants.
+    Parse full names and generate exhaustive username variants.
     Supports "First Last", "First Middle Last", "Last, First",
     and batch multi-name input.
     """
@@ -23,6 +23,12 @@ class NameParser:
 
     # Common suffixes to strip
     SUFFIXES = {'jr', 'sr', 'ii', 'iii', 'iv', 'v', 'phd', 'md', 'esq', 'dds'}
+
+    # Separators to use between name parts
+    NAME_SEPARATORS = ['', '.', '_', '-']
+
+    # Common number suffixes for variations
+    NUM_SUFFIXES = ['', '1', '01', '123', '007', '99', '00']
 
     def parse_name(self, full_name):
         """
@@ -71,46 +77,78 @@ class NameParser:
 
     def generate_usernames(self, parsed):
         """
-        Generate all plausible username variants from a parsed name.
+        Generate ALL plausible username combinations from a parsed name.
+        Uses every combination of separators (none, '.', '_', '-')
+        between first, last, middle, and initials.
         Returns a sorted list of unique usernames.
         """
         if not parsed:
             return []
 
-        f = parsed['first'].lower()
-        l = parsed['last'].lower()
-        m = parsed['middle'].lower().split()[0] if parsed['middle'] else ''
-        mi = m[0] if m else ''  # middle initial
+        f = parsed['first'].lower().strip()
+        l = parsed['last'].lower().strip()
+        m_full = parsed['middle'].lower().strip()
+        m = m_full.split()[0] if m_full else ''  # first middle name word
+        fi = f[0] if f else ''                    # first initial
+        li = l[0] if l else ''                    # last initial
+        mi = m[0] if m else ''                    # middle initial
 
         usernames = set()
 
+        # ─── Single parts ───
         if f:
             usernames.add(f)
         if l:
             usernames.add(l)
 
+        # ─── Two-part combos: first + last ───
         if f and l:
-            # Common patterns
-            usernames.add(f'{f}{l}')           # johnsmith
-            usernames.add(f'{f}.{l}')          # john.smith
-            usernames.add(f'{f}_{l}')          # john_smith
-            usernames.add(f'{f}-{l}')          # john-smith
-            usernames.add(f'{l}{f}')           # smithjohn
-            usernames.add(f'{f[0]}{l}')        # jsmith
-            usernames.add(f'{f}{l[0]}')        # johns
-            usernames.add(f'{l}{f[0]}')        # smithj
-            usernames.add(f'{f[0]}.{l}')       # j.smith
-            usernames.add(f'{f[0]}_{l}')       # j_smith
+            for sep in self.NAME_SEPARATORS:
+                # first{sep}last
+                usernames.add(f'{f}{sep}{l}')
+                # last{sep}first
+                usernames.add(f'{l}{sep}{f}')
+                # first_initial{sep}last
+                usernames.add(f'{fi}{sep}{l}')
+                # last{sep}first_initial
+                usernames.add(f'{l}{sep}{fi}')
+                # first{sep}last_initial
+                usernames.add(f'{f}{sep}{li}')
+                # last_initial{sep}first
+                usernames.add(f'{li}{sep}{f}')
 
-            if mi:
-                usernames.add(f'{f}{mi}{l}')       # johnmsmith
-                usernames.add(f'{f}.{mi}.{l}')     # john.m.smith
-                usernames.add(f'{f}_{mi}_{l}')     # john_m_smith
-                usernames.add(f'{f[0]}{mi}{l}')    # jmsmith
-                usernames.add(f'{f}{m}{l}')        # johnmichaelsmith
-                usernames.add(f'{f}.{m}.{l}')      # john.michael.smith
-                usernames.add(f'{f}_{m}_{l}')      # john_michael_smith
-                usernames.add(f'{f}{m}')            # johnmichael
+            # With number suffixes on the most common combos
+            for num in self.NUM_SUFFIXES:
+                if num:
+                    usernames.add(f'{f}{l}{num}')
+                    usernames.add(f'{f}.{l}{num}')
+                    usernames.add(f'{f}_{l}{num}')
+                    usernames.add(f'{fi}{l}{num}')
+
+        # ─── Three-part combos: first + middle + last ───
+        if f and l and mi:
+            for sep in self.NAME_SEPARATORS:
+                # first{sep}middle_initial{sep}last
+                usernames.add(f'{f}{sep}{mi}{sep}{l}')
+                # first_initial{sep}middle_initial{sep}last
+                usernames.add(f'{fi}{sep}{mi}{sep}{l}')
+                # first{sep}middle_full{sep}last
+                usernames.add(f'{f}{sep}{m}{sep}{l}')
+                # first{sep}middle_initial
+                usernames.add(f'{f}{sep}{mi}')
+                # middle{sep}last
+                usernames.add(f'{m}{sep}{l}')
+
+            # Special combos
+            usernames.add(f'{f}{m}{l}')            # firstmiddlelast
+            usernames.add(f'{fi}{mi}{l}')           # fml + last
+            usernames.add(f'{fi}{mi}{li}')          # initials
+
+        # ─── Edge cases: single name (no last) ───
+        if f and not l:
+            for num in self.NUM_SUFFIXES:
+                if num:
+                    usernames.add(f'{f}{num}')
 
         # Remove empties and single-char
         usernames = {u for u in usernames if len(u) >= 2}

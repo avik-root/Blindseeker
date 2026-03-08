@@ -27,7 +27,7 @@ class BlindSeekerUpdater:
     Preserves configuration, license, and scan data during update.
     """
     
-    GITHUB_REPO = "MintFireDev/Blindseeker"
+    GITHUB_REPO = "avik-root/Blindseeker"
     GITHUB_API = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
     GITHUB_RAW = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main"
     VERSION_FILE_URL = f"{GITHUB_RAW}/version.json"

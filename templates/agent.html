@@ -587,15 +587,22 @@ endblock %}
             </div>`;
                 addMessage(profileHtml, 'agent');
 
-                // Generated Usernames
+                // Generated Usernames — each chip is clickable to scan
                 const vectors = result.search_vectors || {};
                 if (vectors.usernames && vectors.usernames.length > 0) {
-                    let usernameHtml = `<strong>${vectors.total} Username Variants Generated</strong><div class="chip-list">`;
-                    vectors.usernames.slice(0, 25).forEach(u => {
-                        usernameHtml += `<span class="chip">${u}</span>`;
+                    window._agentUsernames = vectors.usernames;
+                    let usernameHtml = `<strong>${vectors.total} Username Variants Generated</strong>
+                        <div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;">Click any username to scan it across all platforms.</div>
+                        <div class="chip-list">`;
+                    vectors.usernames.slice(0, 30).forEach(u => {
+                        usernameHtml += `<span class="chip chip-scannable" onclick="agentScanUsername('${u}')" title="Click to scan ${u}" style="cursor:pointer;">${u}</span>`;
                     });
-                    if (vectors.total > 25) usernameHtml += `<span class="chip" style="opacity:0.5;">+${vectors.total - 25} more</span>`;
+                    if (vectors.total > 30) usernameHtml += `<span class="chip" style="opacity:0.5;">+${vectors.total - 30} more</span>`;
                     usernameHtml += '</div>';
+                    usernameHtml += `<button class="scan-btn-inline" onclick="agentScanAllUsernames()" style="margin-top:10px;">
+                        <i data-lucide="radar" style="width:14px;height:14px;"></i>
+                        Batch Scan All ${vectors.total} Variants
+                    </button>`;
                     addMessage(usernameHtml, 'agent');
                 }
 
@@ -625,7 +632,7 @@ endblock %}
                     addMessage(geoHtml, 'agent');
                 }
 
-                // Scan Plan + Action Button
+                // Scan Plan + Action Buttons
                 const plan = result.scan_plan || {};
                 let actionHtml = `<div class="result-card">
             <h5><i data-lucide="target" style="width:12px;height:12px;"></i> Scan Strategy</h5>
@@ -634,15 +641,18 @@ endblock %}
             <div class="result-row"><span>Est. Scan Time</span><span class="val">${plan.estimated_scan_time}</span></div>
         </div>`;
                 if (plan.priority_usernames && plan.priority_usernames.length > 0) {
-                    const primaryUser = plan.priority_usernames[0];
-                    actionHtml += `<button class="scan-btn-inline" onclick="window.location.href='/search?username=${encodeURIComponent(primaryUser)}'">
-                <i data-lucide="radar" style="width:14px;height:14px;"></i>
-                Scan Primary: ${primaryUser}
-            </button>`;
+                    actionHtml += `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">`;
+                    plan.priority_usernames.slice(0, 5).forEach(u => {
+                        actionHtml += `<button class="scan-btn-inline" onclick="agentScanUsername('${u}')">
+                    <i data-lucide="radar" style="width:14px;height:14px;"></i>
+                    Scan: ${u}
+                </button>`;
+                    });
+                    actionHtml += `</div>`;
                 }
                 addMessage(actionHtml, 'agent');
 
-                addMessage('Analysis complete. You can now <strong>scan</strong> the priority usernames or refine the subject data for deeper analysis.', 'agent');
+                addMessage('Analysis complete. Click any <strong>username chip</strong> to scan it individually or use <strong>Batch Scan All</strong> to enumerate every variant across all platforms.', 'agent');
             })
             .catch(err => {
                 showTyping(false);
@@ -650,6 +660,39 @@ endblock %}
                 btn.innerHTML = '<i data-lucide="scan" style="width:16px;height:16px;"></i> ANALYZE SUBJECT';
                 lucide.createIcons();
                 addMessage(`<span style="color:var(--accent-danger);">Error: ${err.message}</span>`, 'agent');
+            });
+    }
+
+    // ─── Agent Scan Functions ───
+    function agentScanUsername(username) {
+        addMessage(`<i data-lucide="radar" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i> Launching scan for <strong>${username}</strong>...`, 'agent');
+        lucide.createIcons();
+        // Navigate to search page with username pre-filled and auto-start
+        window.location.href = '/search?username=' + encodeURIComponent(username) + '&autostart=1';
+    }
+
+    function agentScanAllUsernames() {
+        if (!window._agentUsernames || !window._agentUsernames.length) return;
+        const usernames = window._agentUsernames;
+        addMessage(`<i data-lucide="rocket" style="width:12px;height:12px;display:inline;vertical-align:middle;"></i> Launching <strong>batch scan</strong> for all <strong>${usernames.length}</strong> username variants...`, 'agent');
+        lucide.createIcons();
+
+        fetch('/api/scan/batch', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ names: usernames.join('\n'), mode: 'username' })
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    addMessage(`<span style="color:var(--accent-danger);">${data.error}</span>`, 'agent');
+                    return;
+                }
+                addMessage(`<span style="color:var(--accent-primary);">Batch scan started for ${data.total} usernames. Redirecting to scan page...</span>`, 'agent');
+                setTimeout(() => { window.location.href = '/search?batch=1'; }, 1500);
+            })
+            .catch(err => {
+                addMessage(`<span style="color:var(--accent-danger);">Batch scan error: ${err.message}</span>`, 'agent');
             });
     }
 

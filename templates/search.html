@@ -448,5 +448,22 @@ New Scan
     }
 
     setTimeout(() => lucide.createIcons(), 50);
+
+    // ─── Auto-Start from Agent or External Link ───
+    (function () {
+        const params = new URLSearchParams(window.location.search);
+        const username = params.get('username');
+        const autostart = params.get('autostart');
+
+        if (username) {
+            const input = document.getElementById('scan-username');
+            if (input) {
+                input.value = username;
+                if (autostart === '1') {
+                    setTimeout(() => startScan(username), 300);
+                }
+            }
+        }
+    })();
 </script>
 {% endblock %}

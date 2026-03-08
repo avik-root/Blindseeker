@@ -201,6 +201,27 @@ def history_page():
     return render_template('history.html', scans=scans)
 
 
+@app.route('/api/scan/<scan_id>/delete', methods=['DELETE', 'POST'])
+def api_delete_scan(scan_id):
+    """Delete a scan from history."""
+    # Remove from in-memory store
+    if scan_id in scan_store:
+        del scan_store[scan_id]
+    
+    # Remove JSON file
+    json_path = SCANS_DIR / f'{scan_id}.json'
+    if json_path.exists():
+        json_path.unlink()
+    
+    # Remove from engine history
+    try:
+        engine.delete_scan(scan_id)
+    except (AttributeError, Exception):
+        pass  # Engine may not have this method
+    
+    return jsonify({'status': 'deleted', 'scan_id': scan_id})
+
+
 @app.route('/settings')
 def settings_page():
     """Settings/configuration page."""

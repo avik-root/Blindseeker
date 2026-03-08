@@ -27,12 +27,12 @@ History
                             <th>Total</th>
                             <th>Duration</th>
                             <th>Date</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for scan in scans %}
-                        <tr>
+                        <tr id="scan-row-{{ scan.scan_id }}">
                             <td><strong>{{ scan.username }}</strong></td>
                             <td><code>{{ scan.scan_id[:20] }}...</code></td>
                             <td>
@@ -45,12 +45,17 @@ History
                             <td>{{ scan.total_platforms }}</td>
                             <td>{{ scan.duration_seconds }}s</td>
                             <td>{{ scan.start_time[:19] if scan.start_time else 'N/A' }}</td>
-                            <td>
+                            <td style="display:flex;gap:6px;">
                                 <a href="/results/{{ scan.scan_id }}" class="btn btn-sm btn-secondary">
                                     <i data-lucide="external-link"
                                         style="width:12px;height:12px;display:inline;vertical-align:middle;margin-right:2px;"></i>
                                     View
                                 </a>
+                                <button class="btn btn-sm btn-danger" onclick="deleteScan('{{ scan.scan_id }}')"
+                                    title="Delete this scan">
+                                    <i data-lucide="trash-2"
+                                        style="width:12px;height:12px;display:inline;vertical-align:middle;"></i>
+                                </button>
                             </td>
                         </tr>
                         {% endfor %}
@@ -73,5 +78,50 @@ History
         </div>
     </div>
 </div>
-<script>setTimeout(() => lucide.createIcons(), 50);</script>
+
+<style>
+    .btn-danger {
+        background: rgba(239, 68, 68, 0.12);
+        border: 1px solid rgba(239, 68, 68, 0.25);
+        color: #ef4444;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+
+    .btn-danger:hover {
+        background: rgba(239, 68, 68, 0.25);
+    }
+</style>
+
+<script>
+    function deleteScan(scanId) {
+        if (!confirm('Are you sure you want to delete this scan? This cannot be undone.')) return;
+
+        fetch('/api/scan/' + scanId + '/delete', { method: 'DELETE' })
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'deleted') {
+                    const row = document.getElementById('scan-row-' + scanId);
+                    if (row) {
+                        row.style.opacity = '0';
+                        row.style.transition = 'opacity 0.3s';
+                        setTimeout(() => row.remove(), 300);
+                    }
+                    // Update the badge count
+                    const badge = document.querySelector('.header-badge');
+                    if (badge) {
+                        const count = document.querySelectorAll('tbody tr').length - 1;
+                        badge.textContent = count + ' Records';
+                    }
+                } else {
+                    alert('Failed to delete scan.');
+                }
+            })
+            .catch(err => alert('Error: ' + err.message));
+    }
+
+    setTimeout(() => lucide.createIcons(), 50);
+</script>
 {% endblock %}
