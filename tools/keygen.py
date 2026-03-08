@@ -39,9 +39,12 @@ def generate_key():
     return '-'.join(segments)
 
 
+_MASTER_SEED = b"BlindSeeker::MintFire::FuzzyShield::v1.0.0::ShadowProtocol"
+
 def hash_key(key):
-    """SHA-256 hash a product key."""
-    return hashlib.sha256(key.encode('utf-8')).hexdigest()
+    """SHA-256 hash a product key (must match FuzzyShield)."""
+    clean_key = key.replace("-", "").upper().strip()
+    return hashlib.sha256(clean_key.encode('utf-8') + _MASTER_SEED).hexdigest()
 
 
 def load_existing_hashes():
